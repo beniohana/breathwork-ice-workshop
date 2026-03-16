@@ -1429,6 +1429,7 @@ body.lang-en .lightbox-close {
   }
 
   .main-nav {
+    display: none !important;
     position: fixed;
     top: 0;
     right: 0;
@@ -1439,14 +1440,8 @@ body.lang-en .lightbox-close {
     -webkit-backdrop-filter: blur(24px);
     padding: 100px 32px 40px;
     z-index: 999;
-    display: flex;
     align-items: flex-start;
     justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(-30px);
-    transition: opacity 0.3s var(--ease-smooth), visibility 0.3s, transform 0.3s var(--ease-smooth);
   }
 
   body.lang-en .main-nav {
@@ -1454,10 +1449,7 @@ body.lang-en .lightbox-close {
   }
 
   .main-nav.open {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
+    display: flex !important;
   }
 
   .nav-links {
