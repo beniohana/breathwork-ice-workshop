@@ -1054,9 +1054,9 @@ body.lang-en .lightbox-close {
 .faq-question {
   width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
-  padding: 20px 24px 20px 56px;
+  padding: 24px 24px 24px 56px;
   background: none;
   border: none;
   cursor: pointer;
@@ -1065,7 +1065,7 @@ body.lang-en .lightbox-close {
   color: var(--text);
   opacity: 0.22;
   transition: opacity 0.3s, margin-bottom 0.3s;
-  margin-bottom: -20px;
+  margin-bottom: -16px;
 }
 
 .faq-item.open .faq-question {
@@ -1083,19 +1083,36 @@ body.lang-en .lightbox-close {
 
 .faq-num {
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1;
-  padding-top: 8px;
   flex-shrink: 0;
 }
 
 .faq-title {
   font-size: clamp(1.6rem, 4.5vw, 2.8rem);
-  font-weight: 700;
+  font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   line-height: 1.1;
   margin: 0;
+  flex: 1;
+}
+
+.faq-arrow {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.35s var(--ease-smooth);
+  margin-right: auto;
+}
+
+body.lang-en .faq-arrow {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.faq-item.open .faq-arrow {
+  transform: rotate(180deg);
 }
 
 .faq-answer {
@@ -1641,8 +1658,8 @@ body.lang-en .lightbox-close {
 
   /* FAQ accordion mobile */
   .faq-question {
-    padding: 16px 16px 16px 24px;
-    margin-bottom: -14px;
+    padding: 18px 16px 18px 24px;
+    margin-bottom: -12px;
   }
 
   .faq-item.open .faq-question {
@@ -1651,6 +1668,11 @@ body.lang-en .lightbox-close {
 
   .faq-title {
     font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
+
+  .faq-arrow {
+    width: 20px;
+    height: 20px;
   }
 
   .faq-answer {
