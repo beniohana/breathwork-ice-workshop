@@ -1347,7 +1347,7 @@ body.lang-en .faq-arrow {
   display: grid;
   grid-template-columns: 1fr 280px;
   gap: 48px;
-  align-items: center;
+  align-items: start;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -1438,14 +1438,14 @@ body.lang-en .qa-arrow {
 /* Decorative snowflake */
 .qa-deco {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding-top: 40px;
+  margin-top: 60px;
 }
 
 .qa-snowflake {
-  width: 220px;
-  height: 220px;
+  width: 260px;
+  height: 260px;
   animation: qa-spin 40s linear infinite;
 }
 
