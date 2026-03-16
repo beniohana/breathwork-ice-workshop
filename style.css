@@ -1335,6 +1335,7 @@ body.lang-en .faq-arrow {
 
 /* ---------- Q&A SECTION ---------- */
 .qa-section {
+  position: relative;
   padding: var(--section-pad) 0;
   background: #f9fcff;
 }
@@ -1344,7 +1345,6 @@ body.lang-en .faq-arrow {
 }
 
 .qa-layout {
-  position: relative;
   max-width: 700px;
   margin: 0 auto;
 }
@@ -1450,7 +1450,7 @@ body.lang-en .qa-arrow {
 .qa-snowflake {
   width: 340px;
   height: 340px;
-  opacity: 0.4;
+  opacity: 0.22;
   animation: qa-spin 40s linear infinite;
 }
 
