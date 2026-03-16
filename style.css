@@ -1036,83 +1036,85 @@ body.lang-en .lightbox-close {
 /* ---------- FAQ ACCORDION ---------- */
 .faq-section {
   padding: var(--section-pad) 0;
-  background: var(--ice-50);
+  background: var(--white);
 }
 
 .faq-list {
-  max-width: 740px;
+  max-width: 780px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .faq-item {
-  background: var(--white);
-  border-radius: 14px;
-  border: 1px solid var(--ice-100);
+  border-bottom: 1px solid var(--ice-200);
   overflow: hidden;
-  transition: box-shadow 0.3s, border-color 0.3s;
-}
-
-.faq-item:hover {
-  border-color: var(--ice-300);
-  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.06);
-}
-
-.faq-item.open {
-  border-color: var(--ice-300);
-  box-shadow: 0 4px 24px rgba(14, 165, 233, 0.08);
 }
 
 .faq-question {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
   gap: 16px;
-  padding: 20px 24px;
+  padding: 20px 24px 20px 56px;
   background: none;
   border: none;
   cursor: pointer;
   font-family: inherit;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text);
   text-align: start;
-  transition: color 0.3s;
+  color: var(--text);
+  opacity: 0.22;
+  transition: opacity 0.3s, margin-bottom 0.3s;
+  margin-bottom: -20px;
 }
 
-.faq-question:hover {
-  color: var(--ice-600);
+.faq-item.open .faq-question {
+  opacity: 1;
+  margin-bottom: 0;
 }
 
-.faq-icon {
+.faq-item:hover .faq-question {
+  opacity: 0.5;
+}
+
+.faq-item.open:hover .faq-question {
+  opacity: 1;
+}
+
+.faq-num {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  padding-top: 8px;
   flex-shrink: 0;
-  color: var(--ice-400);
-  transition: transform 0.35s var(--ease-smooth);
 }
 
-.faq-item.open .faq-icon {
-  transform: rotate(180deg);
+.faq-title {
+  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  margin: 0;
 }
 
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s var(--ease-smooth), padding 0.4s var(--ease-smooth);
-  padding: 0 24px;
+  transition: max-height 0.35s ease-out, padding 0.35s ease-out;
+  padding: 0 56px;
 }
 
 .faq-item.open .faq-answer {
   max-height: 300px;
-  padding: 0 24px 20px;
+  padding: 0 56px 24px;
 }
 
 .faq-answer p {
   font-size: 0.95rem;
   line-height: 1.7;
   color: var(--text-light);
+  padding-right: 32px;
 }
 
 /* ---------- CARD STACK GALLERY ---------- */
@@ -1635,6 +1637,32 @@ body.lang-en .lightbox-close {
   .about-text p {
     font-size: 0.95rem;
     line-height: 1.8;
+  }
+
+  /* FAQ accordion mobile */
+  .faq-question {
+    padding: 16px 16px 16px 24px;
+    margin-bottom: -14px;
+  }
+
+  .faq-item.open .faq-question {
+    margin-bottom: 0;
+  }
+
+  .faq-title {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
+
+  .faq-answer {
+    padding: 0 24px;
+  }
+
+  .faq-item.open .faq-answer {
+    padding: 0 24px 20px;
+  }
+
+  .faq-answer p {
+    padding-right: 0;
   }
 
   /* Card stack mobile - show 1 large card */
