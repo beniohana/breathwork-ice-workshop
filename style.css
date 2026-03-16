@@ -619,12 +619,12 @@ body.lang-en .a11y-panel {
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 800;
   color: var(--dark);
   margin-bottom: 20px;
   letter-spacing: -0.02em;
-  line-height: 1.3;
+  line-height: 1.15;
 }
 
 .mobile-br {
