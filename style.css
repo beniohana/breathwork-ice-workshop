@@ -161,9 +161,9 @@ ul {
 }
 
 .logo-icon {
-  width: 32px;
-  height: 32px;
-  color: var(--ice-500);
+  height: 36px;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Navigation */
@@ -843,7 +843,7 @@ body.lang-en .a11y-panel {
 
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
 }
 
@@ -1494,9 +1494,9 @@ body.lang-en .qa-arrow {
 }
 
 .footer-logo {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #fff;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 .footer-brand p {
@@ -1586,6 +1586,8 @@ body.lang-en .qa-arrow {
 .benefits-grid .benefit-item:nth-child(1) { transition-delay: 0ms; }
 .benefits-grid .benefit-item:nth-child(2) { transition-delay: 100ms; }
 .benefits-grid .benefit-item:nth-child(3) { transition-delay: 200ms; }
+.benefits-grid .benefit-item:nth-child(4) { transition-delay: 300ms; }
+
 /* ---------- FLOATING ELEMENTS ---------- */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
