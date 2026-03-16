@@ -1710,8 +1710,11 @@ body.lang-en .qa-arrow {
   }
 
   .hero-logo {
-    height: 40px;
-    margin: 0 auto 12px;
+    display: none;
+  }
+
+  .marker-line {
+    display: none;
   }
 
   .hero-title {
