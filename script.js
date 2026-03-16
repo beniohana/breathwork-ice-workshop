@@ -22,34 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = scroll;
   }, { passive: true });
 
-  // ==================== MOBILE MENU ====================
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mainNav = document.getElementById('mainNav');
-
-  mobileMenuBtn.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    mainNav.classList.toggle('open');
-  });
-
-  // Close mobile menu on link click
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenuBtn.classList.remove('active');
-      mainNav.classList.remove('open');
-    });
-  });
-
-  // Prevent body scroll when mobile menu is open
-  const toggleBodyScroll = () => {
-    if (mainNav.classList.contains('open')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  };
-
-  const menuObserver = new MutationObserver(toggleBodyScroll);
-  menuObserver.observe(mainNav, { attributes: true, attributeFilter: ['class'] });
+  // ==================== MOBILE MENU (disabled – nav hidden on mobile) ====================
 
   // ==================== LANGUAGE SWITCHER ====================
   const langToggle = document.getElementById('langToggle');
