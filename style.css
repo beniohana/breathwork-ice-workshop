@@ -1432,48 +1432,8 @@ body.lang-en .qa-arrow {
   padding-right: 28px;
 }
 
-/* Decorative snowflake */
-.qa-deco {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.qa-content {
-  position: relative;
-  z-index: 1;
-}
-
-.qa-snowflake {
-  width: 340px;
-  height: 340px;
-  opacity: 0.25;
-  animation: qa-spin 40s linear infinite;
-}
-
-@keyframes qa-spin {
-  to { transform: rotate(360deg); }
-}
-
 /* Responsive */
 @media (max-width: 768px) {
-  .qa-deco {
-    position: static;
-    transform: none;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-
-  .qa-snowflake {
-    width: 120px;
-    height: 120px;
-    opacity: 0.6;
-  }
-
   .qa-question {
     padding: 14px 14px 14px 28px;
   }
