@@ -1682,17 +1682,10 @@ body.lang-en .qa-arrow {
   }
 
   .hero-ice-cube-wrapper {
-    width: min(50vw, 220px);
-    height: min(50vw, 220px);
+    width: min(50vw, 200px);
+    height: min(50vw, 200px);
     opacity: 0.8;
   }
-
-  .ice-front  { transform: translateZ(calc(min(25vw, 110px))); }
-  .ice-back   { transform: rotateY(180deg) translateZ(calc(min(25vw, 110px))); }
-  .ice-left   { transform: rotateY(-90deg) translateZ(calc(min(25vw, 110px))); }
-  .ice-right  { transform: rotateY(90deg) translateZ(calc(min(25vw, 110px))); }
-  .ice-top    { transform: rotateX(90deg) translateZ(calc(min(25vw, 110px))); }
-  .ice-bottom { transform: rotateX(-90deg) translateZ(calc(min(25vw, 110px))); }
 
   .ice-face {
     background: linear-gradient(
@@ -1928,16 +1921,9 @@ body.lang-en .qa-arrow {
   }
 
   .hero-ice-cube-wrapper {
-    width: min(45vw, 180px);
-    height: min(45vw, 180px);
+    width: min(42vw, 160px);
+    height: min(42vw, 160px);
   }
-
-  .ice-front  { transform: translateZ(calc(min(22.5vw, 90px))); }
-  .ice-back   { transform: rotateY(180deg) translateZ(calc(min(22.5vw, 90px))); }
-  .ice-left   { transform: rotateY(-90deg) translateZ(calc(min(22.5vw, 90px))); }
-  .ice-right  { transform: rotateY(90deg) translateZ(calc(min(22.5vw, 90px))); }
-  .ice-top    { transform: rotateX(90deg) translateZ(calc(min(22.5vw, 90px))); }
-  .ice-bottom { transform: rotateX(-90deg) translateZ(calc(min(22.5vw, 90px))); }
 
   .trust-logo {
     padding: 0 18px;
