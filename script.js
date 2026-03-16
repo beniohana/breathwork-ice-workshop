@@ -23,27 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   // ==================== FAQ ACCORDION ====================
-  const faqItems = document.querySelectorAll('.faq-item');
-  // Open first item by default
-  if (faqItems.length) {
-    faqItems[0].classList.add('open');
-    faqItems[0].querySelector('.faq-question').setAttribute('aria-expanded', 'true');
-  }
-
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
       const isOpen = item.classList.contains('open');
       // Close all
-      faqItems.forEach(el => {
-        el.classList.remove('open');
-        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-      });
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
       // Toggle clicked
-      if (!isOpen) {
-        item.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
+      if (!isOpen) item.classList.add('open');
+      btn.setAttribute('aria-expanded', !isOpen);
     });
   });
 
