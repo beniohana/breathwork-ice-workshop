@@ -405,7 +405,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if (off < -stackLen / 2) off += stackLen;
       const abs = Math.abs(off);
 
-      // Only show 3 cards: center (-1, 0, +1)
+      // On mobile: show only 1 card (the active one)
+      if (isMobile) {
+        if (off !== 0) {
+          card.style.opacity = '0';
+          card.style.pointerEvents = 'none';
+          card.style.transform = `translateX(${off > 0 ? 300 : -300}px) scale(0.8)`;
+          card.classList.remove('active', 'side');
+          return;
+        }
+        card.style.transform = 'translateX(0) scale(1)';
+        card.style.opacity = '1';
+        card.style.zIndex = '10';
+        card.style.pointerEvents = 'auto';
+        card.classList.add('active');
+        card.classList.remove('side');
+        return;
+      }
+
+      // Desktop: show 3 cards (center + 2 sides)
       if (abs > 1) {
         card.style.opacity = '0';
         card.style.pointerEvents = 'none';
@@ -414,8 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const isSmallMobile = window.innerWidth <= 480;
-      const spacing = isSmallMobile ? 150 : isMobile ? 190 : 340;
+      const spacing = 340;
       const x = off * spacing;
       const scale = off === 0 ? 1.08 : 0.92;
       const opacity = off === 0 ? 1 : 0.6;
