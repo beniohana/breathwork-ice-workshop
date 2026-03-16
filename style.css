@@ -618,6 +618,14 @@ body.lang-en .a11y-panel {
   padding: 40px 24px;
 }
 
+.hero-logo {
+  display: block;
+  margin: -40px auto 24px;
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
 .hero-title {
   font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 800;
@@ -625,6 +633,42 @@ body.lang-en .a11y-panel {
   margin-bottom: 20px;
   letter-spacing: -0.02em;
   line-height: 1.3;
+  position: relative;
+  display: inline-block;
+}
+
+.marker-line {
+  position: absolute;
+  bottom: -2px;
+  left: 5%;
+  width: 90%;
+  height: 12px;
+  overflow: visible;
+}
+
+.marker-path {
+  stroke-dasharray: 320;
+  stroke-dashoffset: -320;
+}
+
+.hero-title.revealed .marker-path {
+  animation: drawMarker 1s ease 0.5s forwards;
+}
+
+.hero-title.revealed .marker-line {
+  animation: eraseMarker 0.8s ease 2s forwards;
+}
+
+@keyframes drawMarker {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes eraseMarker {
+  to {
+    clip-path: inset(0 100% 0 0);
+  }
 }
 
 .mobile-br {
@@ -1663,6 +1707,11 @@ body.lang-en .qa-arrow {
 
   .mobile-br {
     display: inline;
+  }
+
+  .hero-logo {
+    height: 70px;
+    margin: 0 auto 16px;
   }
 
   .hero-title {
