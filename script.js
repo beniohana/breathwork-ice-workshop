@@ -71,6 +71,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ==================== Q&A ACCORDION ====================
+  document.querySelectorAll('.qa-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.qa-item');
+      const isOpen = item.classList.contains('open');
+      // Close all Q&A items
+      document.querySelectorAll('.qa-item.open').forEach(el => el.classList.remove('open'));
+      // Toggle clicked
+      if (!isOpen) item.classList.add('open');
+      btn.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+
+  // Open first Q&A item by default
+  const firstQa = document.querySelector('.qa-item');
+  if (firstQa) {
+    firstQa.classList.add('open');
+    firstQa.querySelector('.qa-question')?.setAttribute('aria-expanded', 'true');
+  }
+
   // ==================== LANGUAGE SWITCHER ====================
   const langToggle = document.getElementById('langToggle');
   const langLabel = document.getElementById('langLabel');
@@ -497,11 +517,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowLeft') setStackActive(stackActive + 1);
   });
 
-  // Touch swipe
+  // Touch swipe (mobile)
   let stackTouchStartX = 0;
+  let stackTouchStartY = 0;
+  let stackSwipeLocked = false; // true = horizontal swipe in progress
+
   stackStage.addEventListener('touchstart', (e) => {
     stackTouchStartX = e.changedTouches[0].screenX;
+    stackTouchStartY = e.changedTouches[0].screenY;
+    stackSwipeLocked = false;
   }, { passive: true });
+
+  stackStage.addEventListener('touchmove', (e) => {
+    const dx = Math.abs(e.changedTouches[0].screenX - stackTouchStartX);
+    const dy = Math.abs(e.changedTouches[0].screenY - stackTouchStartY);
+    // Once we detect horizontal intent, lock it and block vertical scroll
+    if (!stackSwipeLocked && dx > 10 && dx > dy) {
+      stackSwipeLocked = true;
+    }
+    if (stackSwipeLocked) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 
   stackStage.addEventListener('touchend', (e) => {
     const diff = stackTouchStartX - e.changedTouches[0].screenX;
@@ -512,6 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setStackActive(stackActive - 1);
       }
     }
+    stackSwipeLocked = false;
   }, { passive: true });
 
   // Auto-advance
