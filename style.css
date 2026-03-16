@@ -1337,7 +1337,6 @@ body.lang-en .faq-arrow {
 .qa-section {
   padding: var(--section-pad) 0;
   background: #f9fcff;
-  overflow: hidden;
 }
 
 .qa-section .section-header h2 {
