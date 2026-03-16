@@ -1430,55 +1430,10 @@ body.lang-en .lightbox-close {
 
   .main-nav {
     display: none !important;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: rgba(240, 249, 255, 0.98);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    padding: 100px 32px 40px;
-    z-index: 999;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  body.lang-en .main-nav {
-    direction: ltr;
-  }
-
-  .main-nav.open {
-    display: flex !important;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  .nav-links a {
-    display: block;
-    padding: 14px 0;
-    font-size: 1.1rem;
-    border-bottom: 1px solid var(--ice-100);
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .nav-links a::after {
-    display: none;
   }
 
   .mobile-menu-btn {
-    display: flex;
-    z-index: 1001;
-    width: 44px;
-    height: 44px;
-    align-items: center;
-    justify-content: center;
-    -webkit-tap-highlight-color: transparent;
+    display: none !important;
   }
 
   .header-cta {
