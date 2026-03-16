@@ -1670,7 +1670,7 @@ body.lang-en .qa-arrow {
   }
 
   .hero-title {
-    font-size: clamp(3.5rem, 15vw, 5.5rem);
+    font-size: clamp(4rem, 17vw, 6rem);
     line-height: 1.1;
   }
 
@@ -1682,8 +1682,8 @@ body.lang-en .qa-arrow {
   }
 
   .hero-ice-cube-wrapper {
-    width: min(50vw, 200px);
-    height: min(50vw, 200px);
+    width: min(65vw, 280px);
+    height: min(65vw, 280px);
     opacity: 0.8;
   }
 
@@ -1912,7 +1912,7 @@ body.lang-en .qa-arrow {
 /* Small mobile (≤480px) */
 @media (max-width: 480px) {
   .hero-title {
-    font-size: clamp(3rem, 13vw, 4.5rem);
+    font-size: clamp(3.5rem, 15vw, 5rem);
   }
 
   .hero-subtitle {
@@ -1921,8 +1921,8 @@ body.lang-en .qa-arrow {
   }
 
   .hero-ice-cube-wrapper {
-    width: min(42vw, 160px);
-    height: min(42vw, 160px);
+    width: min(60vw, 240px);
+    height: min(60vw, 240px);
   }
 
   .trust-logo {
