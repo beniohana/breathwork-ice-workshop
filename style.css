@@ -1670,7 +1670,7 @@ body.lang-en .qa-arrow {
   }
 
   .hero-title {
-    font-size: clamp(2rem, 9vw, 3rem);
+    font-size: clamp(2.6rem, 11vw, 3.8rem);
   }
 
   .hero-subtitle {
@@ -1908,7 +1908,7 @@ body.lang-en .qa-arrow {
 /* Small mobile (≤480px) */
 @media (max-width: 480px) {
   .hero-title {
-    font-size: clamp(2rem, 8vw, 2.6rem);
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
   }
 
   .hero-subtitle {
