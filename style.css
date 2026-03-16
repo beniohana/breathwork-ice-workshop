@@ -794,30 +794,11 @@ body.lang-en .a11y-panel {
 
 .trust-track {
   display: flex;
+  align-items: center;
   width: max-content;
   direction: ltr;
   gap: 0;
-  animation: trustScroll 30s linear infinite;
-}
-
-.trust-track:hover {
-  animation-play-state: paused;
-}
-
-body.reduce-motion .trust-track {
-  animation: none;
-}
-
-@keyframes trustScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.trust-logos {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  gap: 0;
+  will-change: transform;
 }
 
 .trust-logo {

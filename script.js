@@ -22,6 +22,42 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = scroll;
   }, { passive: true });
 
+  // ==================== TRUST STRIP INFINITE SCROLL ====================
+  const trustTrack = document.getElementById('trustTrack');
+  if (trustTrack) {
+    const logos = Array.from(trustTrack.children);
+    // Clone logos enough times to fill the screen + extra
+    for (let i = 0; i < 3; i++) {
+      logos.forEach(logo => {
+        const clone = logo.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        trustTrack.appendChild(clone);
+      });
+    }
+
+    let scrollPos = 0;
+    const speed = 0.5; // pixels per frame
+    const oneSetWidth = logos.reduce((w, el) => w + el.offsetWidth, 0);
+    let paused = false;
+    let rafId;
+
+    function scrollLogos() {
+      if (!paused) {
+        scrollPos += speed;
+        if (scrollPos >= oneSetWidth) {
+          scrollPos -= oneSetWidth;
+        }
+        trustTrack.style.transform = `translateX(-${scrollPos}px)`;
+      }
+      rafId = requestAnimationFrame(scrollLogos);
+    }
+
+    trustTrack.parentElement.addEventListener('mouseenter', () => paused = true);
+    trustTrack.parentElement.addEventListener('mouseleave', () => paused = false);
+
+    rafId = requestAnimationFrame(scrollLogos);
+  }
+
   // ==================== FAQ ACCORDION ====================
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
