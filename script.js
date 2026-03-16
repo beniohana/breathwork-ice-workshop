@@ -79,7 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // Close all Q&A items
       document.querySelectorAll('.qa-item.open').forEach(el => el.classList.remove('open'));
       // Toggle clicked
-      if (!isOpen) item.classList.add('open');
+      if (!isOpen) {
+        item.classList.add('open');
+        // Scroll into view so it feels like it opens downward
+        setTimeout(() => {
+          item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
+      }
       btn.setAttribute('aria-expanded', !isOpen);
     });
   });
