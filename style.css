@@ -1344,11 +1344,8 @@ body.lang-en .faq-arrow {
 }
 
 .qa-layout {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 48px;
-  align-items: start;
-  max-width: 960px;
+  position: relative;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -1437,15 +1434,23 @@ body.lang-en .qa-arrow {
 
 /* Decorative snowflake */
 .qa-deco {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin-top: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.qa-content {
+  position: relative;
+  z-index: 1;
 }
 
 .qa-snowflake {
-  width: 260px;
-  height: 260px;
+  width: 340px;
+  height: 340px;
+  opacity: 0.4;
   animation: qa-spin 40s linear infinite;
 }
 
@@ -1455,19 +1460,18 @@ body.lang-en .qa-arrow {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .qa-layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
   .qa-deco {
-    order: -1;
-    padding-top: 0;
+    position: static;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
   }
 
   .qa-snowflake {
     width: 120px;
     height: 120px;
+    opacity: 1;
   }
 
   .qa-question {
