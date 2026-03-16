@@ -1205,10 +1205,14 @@ body.lang-en .faq-arrow {
   user-select: none;
 }
 
-.stack-card svg {
+.stack-card svg,
+.stack-card img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 .stack-card.active {
