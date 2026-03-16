@@ -620,8 +620,8 @@ body.lang-en .a11y-panel {
 
 .hero-logo {
   display: block;
-  margin: -40px auto 24px;
-  height: 100px;
+  margin: 0 auto 24px;
+  height: 80px;
   width: auto;
   object-fit: contain;
 }
@@ -1710,10 +1710,6 @@ body.lang-en .qa-arrow {
   }
 
   .hero-logo {
-    display: none;
-  }
-
-  .marker-line {
     display: none;
   }
 
