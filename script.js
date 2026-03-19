@@ -26,18 +26,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const marqueeTrack = document.getElementById('marqueeTrack');
   if (marqueeTrack) {
     const origLogos = Array.from(marqueeTrack.children);
-    // Clone enough sets so track is wider than 2x viewport
-    const needed = Math.ceil((window.innerWidth * 3) / marqueeTrack.scrollWidth) + 1;
-    for (let i = 0; i < needed; i++) {
-      origLogos.forEach(logo => {
-        const clone = logo.cloneNode(true);
+    const logoCount = origLogos.length;
+
+    // Measure one set width (including margins)
+    let oneSetWidth = 0;
+    origLogos.forEach(el => {
+      const style = getComputedStyle(el);
+      oneSetWidth += el.offsetWidth + parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+    });
+
+    // Clone enough sets so total width > 3x viewport (never empty)
+    const setsNeeded = Math.ceil((window.innerWidth * 3) / oneSetWidth) + 2;
+    for (let s = 0; s < setsNeeded; s++) {
+      for (let i = 0; i < logoCount; i++) {
+        const clone = origLogos[i].cloneNode(true);
         clone.setAttribute('aria-hidden', 'true');
         marqueeTrack.appendChild(clone);
-      });
+      }
     }
-    const oneSetWidth = origLogos.reduce((w, el) => w + el.offsetWidth, 0);
+
     let pos = 0;
-    const speed = 0.4;
+    const speed = 0.5;
 
     function scrollMarquee() {
       pos += speed;
