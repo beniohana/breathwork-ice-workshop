@@ -1892,10 +1892,12 @@ body.lang-en .qa-arrow {
   }
 
   .testimonial-card {
-    min-width: 80vw;
+    width: calc(100vw - 64px);
+    min-width: calc(100vw - 64px);
     scroll-snap-align: center;
     padding: 24px 20px;
     flex-shrink: 0;
+    font-size: 0.85rem;
   }
 
   .testimonials-dots {
