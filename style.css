@@ -815,8 +815,8 @@ body.lang-en .a11y-panel {
 /* ---------- MARQUEE (TRUST STRIP) ---------- */
 .marquee {
   position: relative;
+  display: flex;
   width: 100%;
-  max-width: 100vw;
   overflow: hidden;
   background: var(--white);
   padding: 24px 0;
@@ -846,9 +846,13 @@ body.lang-en .a11y-panel {
 
 .marquee-track {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
-  width: max-content;
-  animation: marquee 30s linear infinite;
+  justify-content: space-around;
+  min-width: 100%;
+  gap: 48px;
+  padding: 0 24px;
+  animation: marquee 25s linear infinite;
 }
 
 .marquee:hover .marquee-track {
@@ -860,20 +864,20 @@ body.lang-en .a11y-panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
   height: 30px;
-  margin: 0 28px;
 }
 
 .marquee-logo img {
   display: block;
-  max-height: 100%;
-  max-width: 100%;
+  height: 28px;
   width: auto;
-  height: auto;
   object-fit: contain;
   opacity: 0.7;
   transition: opacity 0.3s;
+}
+
+.marquee-logo-lg img {
+  height: 40px;
 }
 
 .marquee-logo:hover img {
@@ -882,7 +886,7 @@ body.lang-en .a11y-panel {
 
 @keyframes marquee {
   to {
-    transform: translateX(-25%);
+    transform: translateX(-100%);
   }
 }
 
@@ -1781,7 +1785,7 @@ body.lang-en .qa-arrow {
 
   /* Marquee mobile */
   .marquee {
-    padding: 16px 0;
+    padding: 14px 0;
   }
 
   .marquee::before,
@@ -1789,10 +1793,21 @@ body.lang-en .qa-arrow {
     width: 40px;
   }
 
+  .marquee-track {
+    gap: 28px;
+    padding: 0 14px;
+  }
+
   .marquee-logo {
-    width: 70px;
     height: 22px;
-    margin: 0 16px;
+  }
+
+  .marquee-logo img {
+    height: 20px;
+  }
+
+  .marquee-logo-lg img {
+    height: 28px;
   }
 
   /* Benefits mobile */
@@ -1988,10 +2003,17 @@ body.lang-en .qa-arrow {
     height: min(42vw, 160px);
   }
 
-  .marquee-logo {
-    width: 55px;
-    height: 18px;
-    margin: 0 12px;
+  .marquee-track {
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .marquee-logo img {
+    height: 16px;
+  }
+
+  .marquee-logo-lg img {
+    height: 22px;
   }
 
   .benefits-grid {
