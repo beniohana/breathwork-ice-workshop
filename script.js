@@ -22,40 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = scroll;
   }, { passive: true });
 
-  // ==================== MARQUEE INFINITE SCROLL ====================
-  const marqueeTrack = document.getElementById('marqueeTrack');
-  if (marqueeTrack) {
-    const origLogos = Array.from(marqueeTrack.children);
-    const logoCount = origLogos.length;
-
-    // Measure one set width (including margins)
-    let oneSetWidth = 0;
-    origLogos.forEach(el => {
-      const style = getComputedStyle(el);
-      oneSetWidth += el.offsetWidth + parseFloat(style.marginLeft) + parseFloat(style.marginRight);
-    });
-
-    // Clone enough sets so total width > 3x viewport (never empty)
-    const setsNeeded = Math.ceil((window.innerWidth * 3) / oneSetWidth) + 2;
-    for (let s = 0; s < setsNeeded; s++) {
-      for (let i = 0; i < logoCount; i++) {
-        const clone = origLogos[i].cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        marqueeTrack.appendChild(clone);
-      }
-    }
-
-    let pos = 0;
-    const speed = 0.5;
-
-    function scrollMarquee() {
-      pos += speed;
-      if (pos >= oneSetWidth) pos -= oneSetWidth;
-      marqueeTrack.style.transform = `translateX(-${pos}px)`;
-      requestAnimationFrame(scrollMarquee);
-    }
-    requestAnimationFrame(scrollMarquee);
-  }
+  // ==================== MARQUEE (CSS-driven, no JS needed) ====================
 
   // ==================== FAQ ACCORDION ====================
   document.querySelectorAll('.faq-question').forEach(btn => {
