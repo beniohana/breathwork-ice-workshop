@@ -96,22 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     firstQa.querySelector('.qa-question')?.setAttribute('aria-expanded', 'true');
   }
 
-  // ==================== LANGUAGE SWITCHER ====================
-  const langToggle = document.getElementById('langToggle');
-  const langLabel = document.getElementById('langLabel');
-
-  langToggle.addEventListener('click', () => {
-    currentLang = currentLang === 'he' ? 'en' : 'he';
-    document.body.classList.toggle('lang-en', currentLang === 'en');
-    document.documentElement.lang = currentLang;
-    document.documentElement.dir = currentLang === 'he' ? 'rtl' : 'ltr';
-    langLabel.textContent = currentLang === 'he' ? 'EN' : 'עב';
-
-    // Update all translatable elements
-    document.querySelectorAll('[data-he][data-en]').forEach(el => {
-      el.textContent = el.getAttribute(`data-${currentLang}`);
-    });
-  });
+  // ==================== LANGUAGE SWITCHER (removed) ====================
 
   // ==================== ACCESSIBILITY ====================
   const a11yToggle = document.getElementById('a11yToggle');
