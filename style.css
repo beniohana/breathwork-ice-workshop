@@ -1882,8 +1882,8 @@ body.lang-en .qa-arrow {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: 0px;
-    padding-bottom: 4px;
+    gap: 16px;
+    padding: 0 16px 4px;
     scrollbar-width: none;
   }
 
@@ -1892,9 +1892,9 @@ body.lang-en .qa-arrow {
   }
 
   .testimonial-card {
-    min-width: 100%;
-    scroll-snap-align: start;
-    padding: 28px 24px;
+    min-width: 80vw;
+    scroll-snap-align: center;
+    padding: 24px 20px;
     flex-shrink: 0;
   }
 

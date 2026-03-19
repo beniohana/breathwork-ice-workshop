@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         const scrollLeft = testimonialsGrid.scrollLeft;
-        const cardWidth = testimonialCards[0].offsetWidth;
+        const cardWidth = testimonialCards[0].offsetWidth + 16;
         const active = Math.round(scrollLeft / cardWidth);
         dots.forEach((d, i) => d.classList.toggle('active', i === active));
       }, 50);
