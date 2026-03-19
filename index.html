@@ -8,7 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
+  <style>
+    /* Fallback: if JS hasn't revealed elements after 3s, show them anyway */
+    @keyframes forceReveal {
+      to { opacity: 1; transform: none; }
+    }
+    .reveal-up, .reveal-left, .reveal-right {
+      animation: forceReveal 0s 3s forwards;
+    }
+  </style>
 </head>
 <body>
 
@@ -460,6 +469,6 @@
   <div class="lightbox-content" id="lightboxContent"></div>
 </div>
 
-<script src="script.js"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
