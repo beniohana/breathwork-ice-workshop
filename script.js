@@ -70,58 +70,62 @@ document.addEventListener('DOMContentLoaded', () => {
   const a11yPanel = document.getElementById('a11yPanel');
   let fontScale = 1;
 
-  a11yToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    a11yPanel.classList.toggle('open');
-  });
+  if (a11yToggle && a11yPanel) {
+    a11yToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      a11yPanel.classList.toggle('open');
+    });
 
-  // Close panel on outside click
-  document.addEventListener('click', (e) => {
-    if (!a11yPanel.contains(e.target) && e.target !== a11yToggle) {
-      a11yPanel.classList.remove('open');
+    document.addEventListener('click', (e) => {
+      if (!a11yPanel.contains(e.target) && e.target !== a11yToggle) {
+        a11yPanel.classList.remove('open');
+      }
+    });
+
+    const fontValueEl = document.getElementById('a11yFontValue');
+    const contrastToggle = document.getElementById('a11yContrast');
+    const animToggle = document.getElementById('a11yAnimations');
+    const fontUpBtn = document.getElementById('a11yFontUp');
+    const fontDownBtn = document.getElementById('a11yFontDown');
+    const resetBtn = document.getElementById('a11yReset');
+
+    function updateFontDisplay() {
+      if (fontValueEl) fontValueEl.textContent = Math.round(fontScale * 100) + '%';
     }
-  });
 
-  const fontValueEl = document.getElementById('a11yFontValue');
-  const contrastToggle = document.getElementById('a11yContrast');
-  const animToggle = document.getElementById('a11yAnimations');
+    if (fontUpBtn) fontUpBtn.addEventListener('click', () => {
+      fontScale = Math.min(fontScale + 0.1, 1.5);
+      document.documentElement.style.setProperty('--font-scale', fontScale);
+      updateFontDisplay();
+    });
 
-  function updateFontDisplay() {
-    fontValueEl.textContent = Math.round(fontScale * 100) + '%';
+    if (fontDownBtn) fontDownBtn.addEventListener('click', () => {
+      fontScale = Math.max(fontScale - 0.1, 0.8);
+      document.documentElement.style.setProperty('--font-scale', fontScale);
+      updateFontDisplay();
+    });
+
+    if (contrastToggle) contrastToggle.addEventListener('click', () => {
+      const on = document.body.classList.toggle('high-contrast');
+      contrastToggle.setAttribute('aria-checked', on);
+    });
+
+    if (animToggle) animToggle.addEventListener('click', () => {
+      animationsEnabled = !animationsEnabled;
+      document.body.classList.toggle('reduce-motion', !animationsEnabled);
+      animToggle.setAttribute('aria-checked', !animationsEnabled);
+    });
+
+    if (resetBtn) resetBtn.addEventListener('click', () => {
+      fontScale = 1;
+      document.documentElement.style.setProperty('--font-scale', 1);
+      document.body.classList.remove('high-contrast', 'reduce-motion');
+      animationsEnabled = true;
+      updateFontDisplay();
+      if (contrastToggle) contrastToggle.setAttribute('aria-checked', 'false');
+      if (animToggle) animToggle.setAttribute('aria-checked', 'false');
+    });
   }
-
-  document.getElementById('a11yFontUp').addEventListener('click', () => {
-    fontScale = Math.min(fontScale + 0.1, 1.5);
-    document.documentElement.style.setProperty('--font-scale', fontScale);
-    updateFontDisplay();
-  });
-
-  document.getElementById('a11yFontDown').addEventListener('click', () => {
-    fontScale = Math.max(fontScale - 0.1, 0.8);
-    document.documentElement.style.setProperty('--font-scale', fontScale);
-    updateFontDisplay();
-  });
-
-  contrastToggle.addEventListener('click', () => {
-    const on = document.body.classList.toggle('high-contrast');
-    contrastToggle.setAttribute('aria-checked', on);
-  });
-
-  animToggle.addEventListener('click', () => {
-    animationsEnabled = !animationsEnabled;
-    document.body.classList.toggle('reduce-motion', !animationsEnabled);
-    animToggle.setAttribute('aria-checked', !animationsEnabled);
-  });
-
-  document.getElementById('a11yReset').addEventListener('click', () => {
-    fontScale = 1;
-    document.documentElement.style.setProperty('--font-scale', 1);
-    document.body.classList.remove('high-contrast', 'reduce-motion');
-    animationsEnabled = true;
-    updateFontDisplay();
-    contrastToggle.setAttribute('aria-checked', 'false');
-    animToggle.setAttribute('aria-checked', 'false');
-  });
 
   // ==================== SCROLL REVEAL ====================
   const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
@@ -377,13 +381,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let stackHovering = false;
 
   // Build dots
-  for (let i = 0; i < stackLen; i++) {
-    const dot = document.createElement('button');
-    dot.className = 'stack-dot' + (i === stackActive ? ' active' : '');
-    dot.addEventListener('click', () => setStackActive(i));
-    stackDotsContainer.appendChild(dot);
+  if (stackDotsContainer) {
+    for (let i = 0; i < stackLen; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'stack-dot' + (i === stackActive ? ' active' : '');
+      dot.addEventListener('click', () => setStackActive(i));
+      stackDotsContainer.appendChild(dot);
+    }
   }
-  const stackDots = stackDotsContainer.querySelectorAll('.stack-dot');
+  const stackDots = stackDotsContainer ? stackDotsContainer.querySelectorAll('.stack-dot') : [];
 
   function setStackActive(index) {
     if (index < 0) index = stackLen - 1;
@@ -461,15 +467,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Arrow buttons: right arrow moves gallery right, left arrow moves left
-  stackRightBtn.addEventListener('click', () => {
+  if (stackRightBtn) stackRightBtn.addEventListener('click', () => {
     setStackActive(stackActive - 1);
   });
-  stackLeftBtn.addEventListener('click', () => {
+  if (stackLeftBtn) stackLeftBtn.addEventListener('click', () => {
     setStackActive(stackActive + 1);
   });
 
   // Keyboard matches visual direction
-  stackStage.addEventListener('keydown', (e) => {
+  if (stackStage) stackStage.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') setStackActive(stackActive - 1);
     if (e.key === 'ArrowLeft') setStackActive(stackActive + 1);
   });
@@ -479,13 +485,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let stackTouchStartY = 0;
   let stackSwipeLocked = false; // true = horizontal swipe in progress
 
-  stackStage.addEventListener('touchstart', (e) => {
+  if (stackStage) stackStage.addEventListener('touchstart', (e) => {
     stackTouchStartX = e.changedTouches[0].screenX;
     stackTouchStartY = e.changedTouches[0].screenY;
     stackSwipeLocked = false;
   }, { passive: true });
 
-  stackStage.addEventListener('touchmove', (e) => {
+  if (stackStage) stackStage.addEventListener('touchmove', (e) => {
     const dx = Math.abs(e.changedTouches[0].screenX - stackTouchStartX);
     const dy = Math.abs(e.changedTouches[0].screenY - stackTouchStartY);
     // Once we detect horizontal intent, lock it and block vertical scroll
@@ -497,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: false });
 
-  stackStage.addEventListener('touchend', (e) => {
+  if (stackStage) stackStage.addEventListener('touchend', (e) => {
     const diff = stackTouchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
