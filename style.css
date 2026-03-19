@@ -156,14 +156,15 @@ ul {
   transition: opacity 0.3s;
 }
 
-.logo:hover {
-  opacity: 0.8;
+.logo:hover .logo-icon {
+  transform: scale(1.08);
 }
 
 .logo-icon {
   height: 36px;
   width: auto;
   object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
 /* Navigation */
