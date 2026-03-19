@@ -852,7 +852,7 @@ body.lang-en .a11y-panel {
   min-width: 100%;
   gap: 48px;
   padding: 0 24px;
-  animation: marquee 25s linear infinite;
+  animation: marquee 30s linear 3s infinite;
 }
 
 
