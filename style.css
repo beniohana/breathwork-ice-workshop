@@ -1098,7 +1098,7 @@ body.lang-en .lightbox-close {
   font-family: inherit;
   text-align: start;
   color: var(--text);
-  opacity: 0.22;
+  opacity: 0.5;
   transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), margin-bottom 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   margin-bottom: -16px;
 }
@@ -1109,7 +1109,7 @@ body.lang-en .lightbox-close {
 }
 
 .faq-item:hover .faq-question {
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .faq-item.open:hover .faq-question {
