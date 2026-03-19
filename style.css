@@ -860,13 +860,17 @@ body.lang-en .a11y-panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 36px;
+  width: 100px;
+  height: 30px;
+  margin: 0 28px;
 }
 
 .marquee-logo img {
-  height: 32px;
-  max-width: 120px;
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
   opacity: 0.7;
   transition: opacity 0.3s;
@@ -1786,12 +1790,9 @@ body.lang-en .qa-arrow {
   }
 
   .marquee-logo {
-    padding: 0 18px;
-  }
-
-  .marquee-logo img {
-    height: 18px;
-    max-width: 70px;
+    width: 70px;
+    height: 22px;
+    margin: 0 16px;
   }
 
   /* Benefits mobile */
@@ -1988,12 +1989,9 @@ body.lang-en .qa-arrow {
   }
 
   .marquee-logo {
-    padding: 0 14px;
-  }
-
-  .marquee-logo img {
-    height: 14px;
-    max-width: 55px;
+    width: 55px;
+    height: 18px;
+    margin: 0 12px;
   }
 
   .benefits-grid {
