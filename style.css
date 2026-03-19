@@ -843,21 +843,16 @@ body.lang-en .a11y-panel {
   background: linear-gradient(to right, var(--white) 0%, transparent 100%);
 }
 
-@keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.marquee-inner {
+  display: flex;
+  width: max-content;
+  will-change: transform;
 }
 
 .marquee-track {
   display: flex;
   align-items: center;
-  width: max-content;
-  will-change: transform;
-  animation: marqueeScroll 25s linear infinite;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
+  flex-shrink: 0;
 }
 
 .marquee-logo {
