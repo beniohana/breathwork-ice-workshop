@@ -173,6 +173,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach(el => revealObserver.observe(el));
 
+  // ==================== TESTIMONIALS CAROUSEL DOTS ====================
+  const testimonialsGrid = document.querySelector('.testimonials-grid');
+  const testimonialDots = document.getElementById('testimonialDots');
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+  if (testimonialsGrid && testimonialDots && testimonialCards.length) {
+    testimonialCards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `ביקורת ${i + 1}`);
+      dot.addEventListener('click', () => {
+        testimonialCards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+      testimonialDots.appendChild(dot);
+    });
+
+    const dots = testimonialDots.querySelectorAll('.dot');
+    let scrollTimeout;
+    testimonialsGrid.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const scrollLeft = testimonialsGrid.scrollLeft;
+        const cardWidth = testimonialCards[0].offsetWidth + 16;
+        const active = Math.round(scrollLeft / cardWidth);
+        dots.forEach((d, i) => d.classList.toggle('active', i === active));
+      }, 50);
+    });
+  }
+
   // ==================== DEVICE DETECTION ====================
   const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   const isMobileWidth = () => window.innerWidth <= 768;
