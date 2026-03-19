@@ -1058,8 +1058,8 @@ body.lang-en .lightbox-close {
 
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   margin-top: 40px;
 }
 
@@ -1855,8 +1855,8 @@ body.lang-en .qa-arrow {
 
   /* Testimonials mobile */
   .testimonials-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .testimonial-card {
