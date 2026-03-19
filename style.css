@@ -812,15 +812,13 @@ body.lang-en .a11y-panel {
   50% { top: 18px; opacity: 0.3; }
 }
 
-/* ---------- TRUST STRIP ---------- */
 /* ---------- MARQUEE (TRUST STRIP) ---------- */
 .marquee {
   position: relative;
-  display: flex;
   width: 100%;
   overflow: hidden;
   background: var(--white);
-  padding: 24px 0;
+  padding: 20px 0;
   z-index: 10;
 }
 
@@ -830,7 +828,7 @@ body.lang-en .a11y-panel {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 80px;
+  width: 100px;
   z-index: 2;
   pointer-events: none;
 }
@@ -847,43 +845,25 @@ body.lang-en .a11y-panel {
 
 .marquee-track {
   display: flex;
-  flex-shrink: 0;
   align-items: center;
-  justify-content: space-around;
-  min-width: 100%;
-  gap: 48px;
-  padding: 0 24px;
-  animation: marquee 30s linear 3s infinite;
+  width: max-content;
+  will-change: transform;
 }
-
 
 .marquee-logo {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  padding: 0 32px;
 }
 
 .marquee-logo img {
   display: block;
-  height: 28px;
+  height: 26px;
   width: auto;
   object-fit: contain;
-  opacity: 0.7;
-}
-
-.marquee-logo-lg img {
-  height: 40px;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
+  opacity: 0.6;
 }
 
 /* ---------- BENEFITS SECTION ---------- */
@@ -1842,7 +1822,7 @@ body.lang-en .qa-arrow {
 
   /* Marquee mobile */
   .marquee {
-    padding: 14px 0;
+    padding: 12px 0;
   }
 
   .marquee::before,
@@ -1850,21 +1830,12 @@ body.lang-en .qa-arrow {
     width: 40px;
   }
 
-  .marquee-track {
-    gap: 28px;
-    padding: 0 14px;
-  }
-
   .marquee-logo {
-    height: 22px;
+    padding: 0 20px;
   }
 
   .marquee-logo img {
-    height: 20px;
-  }
-
-  .marquee-logo-lg img {
-    height: 28px;
+    height: 18px;
   }
 
   /* Testimonials mobile */
@@ -2070,17 +2041,12 @@ body.lang-en .qa-arrow {
     height: min(42vw, 160px);
   }
 
-  .marquee-track {
-    gap: 20px;
-    padding: 0 10px;
+  .marquee-logo {
+    padding: 0 14px;
   }
 
   .marquee-logo img {
-    height: 16px;
-  }
-
-  .marquee-logo-lg img {
-    height: 22px;
+    height: 14px;
   }
 
   .benefits-grid {

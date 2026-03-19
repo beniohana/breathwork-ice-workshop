@@ -22,7 +22,31 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = scroll;
   }, { passive: true });
 
-  // ==================== MARQUEE (CSS-only, no JS needed) ====================
+  // ==================== MARQUEE INFINITE SCROLL ====================
+  const marqueeTrack = document.getElementById('marqueeTrack');
+  if (marqueeTrack) {
+    const origLogos = Array.from(marqueeTrack.children);
+    // Clone enough sets so track is wider than 2x viewport
+    const needed = Math.ceil((window.innerWidth * 3) / marqueeTrack.scrollWidth) + 1;
+    for (let i = 0; i < needed; i++) {
+      origLogos.forEach(logo => {
+        const clone = logo.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        marqueeTrack.appendChild(clone);
+      });
+    }
+    const oneSetWidth = origLogos.reduce((w, el) => w + el.offsetWidth, 0);
+    let pos = 0;
+    const speed = 0.4;
+
+    function scrollMarquee() {
+      pos += speed;
+      if (pos >= oneSetWidth) pos -= oneSetWidth;
+      marqueeTrack.style.transform = `translateX(-${pos}px)`;
+      requestAnimationFrame(scrollMarquee);
+    }
+    requestAnimationFrame(scrollMarquee);
+  }
 
   // ==================== FAQ ACCORDION ====================
   document.querySelectorAll('.faq-question').forEach(btn => {
@@ -63,69 +87,80 @@ document.addEventListener('DOMContentLoaded', () => {
     firstQa.querySelector('.qa-question')?.setAttribute('aria-expanded', 'true');
   }
 
-  // ==================== LANGUAGE (disabled) ====================
+  // ==================== LANGUAGE SWITCHER ====================
+  const langToggle = document.getElementById('langToggle');
+  const langLabel = document.getElementById('langLabel');
+
+  langToggle.addEventListener('click', () => {
+    currentLang = currentLang === 'he' ? 'en' : 'he';
+    document.body.classList.toggle('lang-en', currentLang === 'en');
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = currentLang === 'he' ? 'rtl' : 'ltr';
+    langLabel.textContent = currentLang === 'he' ? 'EN' : 'עב';
+
+    // Update all translatable elements
+    document.querySelectorAll('[data-he][data-en]').forEach(el => {
+      el.textContent = el.getAttribute(`data-${currentLang}`);
+    });
+  });
 
   // ==================== ACCESSIBILITY ====================
   const a11yToggle = document.getElementById('a11yToggle');
   const a11yPanel = document.getElementById('a11yPanel');
   let fontScale = 1;
 
-  if (a11yToggle && a11yPanel) {
-    a11yToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      a11yPanel.classList.toggle('open');
-    });
+  a11yToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    a11yPanel.classList.toggle('open');
+  });
 
-    document.addEventListener('click', (e) => {
-      if (!a11yPanel.contains(e.target) && e.target !== a11yToggle) {
-        a11yPanel.classList.remove('open');
-      }
-    });
-
-    const fontValueEl = document.getElementById('a11yFontValue');
-    const contrastToggle = document.getElementById('a11yContrast');
-    const animToggle = document.getElementById('a11yAnimations');
-    const fontUpBtn = document.getElementById('a11yFontUp');
-    const fontDownBtn = document.getElementById('a11yFontDown');
-    const resetBtn = document.getElementById('a11yReset');
-
-    function updateFontDisplay() {
-      if (fontValueEl) fontValueEl.textContent = Math.round(fontScale * 100) + '%';
+  // Close panel on outside click
+  document.addEventListener('click', (e) => {
+    if (!a11yPanel.contains(e.target) && e.target !== a11yToggle) {
+      a11yPanel.classList.remove('open');
     }
+  });
 
-    if (fontUpBtn) fontUpBtn.addEventListener('click', () => {
-      fontScale = Math.min(fontScale + 0.1, 1.5);
-      document.documentElement.style.setProperty('--font-scale', fontScale);
-      updateFontDisplay();
-    });
+  const fontValueEl = document.getElementById('a11yFontValue');
+  const contrastToggle = document.getElementById('a11yContrast');
+  const animToggle = document.getElementById('a11yAnimations');
 
-    if (fontDownBtn) fontDownBtn.addEventListener('click', () => {
-      fontScale = Math.max(fontScale - 0.1, 0.8);
-      document.documentElement.style.setProperty('--font-scale', fontScale);
-      updateFontDisplay();
-    });
-
-    if (contrastToggle) contrastToggle.addEventListener('click', () => {
-      const on = document.body.classList.toggle('high-contrast');
-      contrastToggle.setAttribute('aria-checked', on);
-    });
-
-    if (animToggle) animToggle.addEventListener('click', () => {
-      animationsEnabled = !animationsEnabled;
-      document.body.classList.toggle('reduce-motion', !animationsEnabled);
-      animToggle.setAttribute('aria-checked', !animationsEnabled);
-    });
-
-    if (resetBtn) resetBtn.addEventListener('click', () => {
-      fontScale = 1;
-      document.documentElement.style.setProperty('--font-scale', 1);
-      document.body.classList.remove('high-contrast', 'reduce-motion');
-      animationsEnabled = true;
-      updateFontDisplay();
-      if (contrastToggle) contrastToggle.setAttribute('aria-checked', 'false');
-      if (animToggle) animToggle.setAttribute('aria-checked', 'false');
-    });
+  function updateFontDisplay() {
+    fontValueEl.textContent = Math.round(fontScale * 100) + '%';
   }
+
+  document.getElementById('a11yFontUp').addEventListener('click', () => {
+    fontScale = Math.min(fontScale + 0.1, 1.5);
+    document.documentElement.style.setProperty('--font-scale', fontScale);
+    updateFontDisplay();
+  });
+
+  document.getElementById('a11yFontDown').addEventListener('click', () => {
+    fontScale = Math.max(fontScale - 0.1, 0.8);
+    document.documentElement.style.setProperty('--font-scale', fontScale);
+    updateFontDisplay();
+  });
+
+  contrastToggle.addEventListener('click', () => {
+    const on = document.body.classList.toggle('high-contrast');
+    contrastToggle.setAttribute('aria-checked', on);
+  });
+
+  animToggle.addEventListener('click', () => {
+    animationsEnabled = !animationsEnabled;
+    document.body.classList.toggle('reduce-motion', !animationsEnabled);
+    animToggle.setAttribute('aria-checked', !animationsEnabled);
+  });
+
+  document.getElementById('a11yReset').addEventListener('click', () => {
+    fontScale = 1;
+    document.documentElement.style.setProperty('--font-scale', 1);
+    document.body.classList.remove('high-contrast', 'reduce-motion');
+    animationsEnabled = true;
+    updateFontDisplay();
+    contrastToggle.setAttribute('aria-checked', 'false');
+    animToggle.setAttribute('aria-checked', 'false');
+  });
 
   // ==================== SCROLL REVEAL ====================
   const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
@@ -381,15 +416,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let stackHovering = false;
 
   // Build dots
-  if (stackDotsContainer) {
-    for (let i = 0; i < stackLen; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'stack-dot' + (i === stackActive ? ' active' : '');
-      dot.addEventListener('click', () => setStackActive(i));
-      stackDotsContainer.appendChild(dot);
-    }
+  for (let i = 0; i < stackLen; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'stack-dot' + (i === stackActive ? ' active' : '');
+    dot.addEventListener('click', () => setStackActive(i));
+    stackDotsContainer.appendChild(dot);
   }
-  const stackDots = stackDotsContainer ? stackDotsContainer.querySelectorAll('.stack-dot') : [];
+  const stackDots = stackDotsContainer.querySelectorAll('.stack-dot');
 
   function setStackActive(index) {
     if (index < 0) index = stackLen - 1;
@@ -467,15 +500,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Arrow buttons: right arrow moves gallery right, left arrow moves left
-  if (stackRightBtn) stackRightBtn.addEventListener('click', () => {
+  stackRightBtn.addEventListener('click', () => {
     setStackActive(stackActive - 1);
   });
-  if (stackLeftBtn) stackLeftBtn.addEventListener('click', () => {
+  stackLeftBtn.addEventListener('click', () => {
     setStackActive(stackActive + 1);
   });
 
   // Keyboard matches visual direction
-  if (stackStage) stackStage.addEventListener('keydown', (e) => {
+  stackStage.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') setStackActive(stackActive - 1);
     if (e.key === 'ArrowLeft') setStackActive(stackActive + 1);
   });
@@ -485,13 +518,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let stackTouchStartY = 0;
   let stackSwipeLocked = false; // true = horizontal swipe in progress
 
-  if (stackStage) stackStage.addEventListener('touchstart', (e) => {
+  stackStage.addEventListener('touchstart', (e) => {
     stackTouchStartX = e.changedTouches[0].screenX;
     stackTouchStartY = e.changedTouches[0].screenY;
     stackSwipeLocked = false;
   }, { passive: true });
 
-  if (stackStage) stackStage.addEventListener('touchmove', (e) => {
+  stackStage.addEventListener('touchmove', (e) => {
     const dx = Math.abs(e.changedTouches[0].screenX - stackTouchStartX);
     const dy = Math.abs(e.changedTouches[0].screenY - stackTouchStartY);
     // Once we detect horizontal intent, lock it and block vertical scroll
@@ -503,7 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: false });
 
-  if (stackStage) stackStage.addEventListener('touchend', (e) => {
+  stackStage.addEventListener('touchend', (e) => {
     const diff = stackTouchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
