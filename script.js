@@ -194,9 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
     testimonialsGrid.addEventListener('scroll', () => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        const scrollLeft = testimonialsGrid.scrollLeft;
+        const scrollPos = Math.abs(testimonialsGrid.scrollLeft);
         const cardWidth = testimonialCards[0].offsetWidth + 16;
-        const active = Math.round(scrollLeft / cardWidth);
+        const active = Math.round(scrollPos / cardWidth);
         dots.forEach((d, i) => d.classList.toggle('active', i === active));
       }, 50);
     });
