@@ -1204,8 +1204,23 @@ body.lang-en .faq-arrow {
   padding: 0 56px;
 }
 
-.faq-answer > p {
+.faq-answer > p,
+.faq-answer > .faq-answer-inner {
   overflow: hidden;
+}
+
+.faq-answer-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.faq-answer-img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
 }
 
 .faq-item.open .faq-answer {
@@ -1928,6 +1943,17 @@ body.lang-en .qa-arrow {
 
   .faq-answer p {
     padding-right: 0;
+  }
+
+  .faq-answer-inner {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .faq-answer-img {
+    width: 100%;
+    height: 160px;
+    order: -1;
   }
 
   /* Card stack mobile - show 1 large card */
