@@ -812,16 +812,18 @@ body.lang-en .a11y-panel {
 }
 
 /* ---------- TRUST STRIP ---------- */
-.trust-strip {
+/* ---------- MARQUEE (TRUST STRIP) ---------- */
+.marquee {
   position: relative;
-  background: var(--white);
-  padding: 48px 0;
+  width: 100%;
   overflow: hidden;
+  background: var(--white);
+  padding: 40px 0;
+  z-index: 10;
 }
 
-/* Fade edges */
-.trust-strip::before,
-.trust-strip::after {
+.marquee::before,
+.marquee::after {
   content: '';
   position: absolute;
   top: 0;
@@ -831,34 +833,36 @@ body.lang-en .a11y-panel {
   pointer-events: none;
 }
 
-.trust-strip::before {
+.marquee::before {
   right: 0;
   background: linear-gradient(to left, var(--white) 0%, transparent 100%);
 }
 
-.trust-strip::after {
+.marquee::after {
   left: 0;
   background: linear-gradient(to right, var(--white) 0%, transparent 100%);
 }
 
-.trust-track {
+.marquee-track {
   display: flex;
   align-items: center;
   width: max-content;
-  direction: ltr;
-  gap: 0;
-  will-change: transform;
+  animation: marquee 30s linear infinite;
 }
 
-.trust-logo {
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-logo {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 40px;
+  padding: 0 4rem;
 }
 
-.trust-logo img {
+.marquee-logo img {
   height: 28px;
   width: auto;
   object-fit: contain;
@@ -866,8 +870,14 @@ body.lang-en .a11y-panel {
   transition: opacity 0.3s;
 }
 
-.trust-logo:hover img {
+.marquee-logo:hover img {
   opacity: 0.7;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* ---------- BENEFITS SECTION ---------- */
@@ -1763,16 +1773,16 @@ body.lang-en .qa-arrow {
     bottom: 20px;
   }
 
-  /* Trust strip mobile */
-  .trust-strip {
+  /* Marquee mobile */
+  .marquee {
     padding: 28px 0;
   }
 
-  .trust-logo {
-    padding: 0 24px;
+  .marquee-logo {
+    padding: 0 2rem;
   }
 
-  .trust-logo img {
+  .marquee-logo img {
     height: 22px;
   }
 
@@ -1969,11 +1979,11 @@ body.lang-en .qa-arrow {
     height: min(42vw, 160px);
   }
 
-  .trust-logo {
-    padding: 0 18px;
+  .marquee-logo {
+    padding: 0 1.5rem;
   }
 
-  .trust-logo img {
+  .marquee-logo img {
     height: 18px;
   }
 
