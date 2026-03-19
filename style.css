@@ -1070,6 +1070,67 @@ body.lang-en .lightbox-close {
 }
 
 /* ---------- FAQ ACCORDION ---------- */
+/* ---------- TESTIMONIALS SECTION ---------- */
+.testimonials-section {
+  padding: var(--section-pad) 0;
+  background: var(--ice-50);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.testimonial-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px 28px;
+  border: 1px solid var(--ice-200);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.testimonial-text {
+  margin-bottom: 20px;
+}
+
+.testimonial-text p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.testimonial-text p::before {
+  content: '\201F';
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ice-400);
+  line-height: 0;
+  vertical-align: -0.3em;
+  margin-left: 4px;
+}
+
+.testimonial-author {
+  padding-top: 16px;
+  border-top: 1px solid var(--ice-100);
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+
+/* ---------- PROGRAMS ACCORDION ---------- */
 .faq-section {
   padding: var(--section-pad) 0;
   background: var(--white);
@@ -1804,6 +1865,16 @@ body.lang-en .qa-arrow {
 
   .marquee-logo-lg img {
     height: 28px;
+  }
+
+  /* Testimonials mobile */
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .testimonial-card {
+    padding: 24px 20px;
   }
 
   /* Benefits mobile */
