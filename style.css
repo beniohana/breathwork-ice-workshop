@@ -855,9 +855,6 @@ body.lang-en .a11y-panel {
   animation: marquee 25s linear infinite;
 }
 
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
-}
 
 .marquee-logo {
   flex-shrink: 0;
@@ -873,15 +870,10 @@ body.lang-en .a11y-panel {
   width: auto;
   object-fit: contain;
   opacity: 0.7;
-  transition: opacity 0.3s;
 }
 
 .marquee-logo-lg img {
   height: 40px;
-}
-
-.marquee-logo:hover img {
-  opacity: 1;
 }
 
 @keyframes marquee {
