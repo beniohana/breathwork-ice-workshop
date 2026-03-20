@@ -884,6 +884,11 @@ body.lang-en .a11y-panel {
   object-fit: contain;
 }
 
+/* Move logo is proportionally wider — scale down slightly */
+.marquee-logo img[src*="move logo2"] {
+  height: 24px;
+}
+
 @media (max-width: 768px) {
   .marquee {
     padding: 16px 0;
@@ -1924,6 +1929,10 @@ body.lang-en .qa-arrow {
     height: 30px;
   }
 
+  .marquee-logo img[src*="move logo2"] {
+    height: 22px;
+  }
+
   /* Testimonials mobile — swipe carousel */
   .testimonials-grid {
     display: flex;
@@ -2162,6 +2171,10 @@ body.lang-en .qa-arrow {
 
   .marquee-logo img {
     height: 24px;
+  }
+
+  .marquee-logo img[src*="move logo2"] {
+    height: 18px;
   }
 
   .benefits-grid {
