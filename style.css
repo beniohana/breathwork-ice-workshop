@@ -812,64 +812,6 @@ body.lang-en .a11y-panel {
   50% { top: 18px; opacity: 0.3; }
 }
 
-/* ---------- MARQUEE (TRUST STRIP) ---------- */
-.marquee {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: var(--white);
-  padding: 20px 0;
-  z-index: 10;
-}
-
-.marquee::before,
-.marquee::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.marquee::before {
-  right: 0;
-  background: linear-gradient(to left, var(--white) 0%, transparent 100%);
-}
-
-.marquee::after {
-  left: 0;
-  background: linear-gradient(to right, var(--white) 0%, transparent 100%);
-}
-
-.marquee-inner {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-}
-
-.marquee-track {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.marquee-logo {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 32px;
-}
-
-.marquee-logo img {
-  display: block;
-  height: 26px;
-  width: auto;
-  object-fit: contain;
-  opacity: 0.6;
-}
 
 /* ---------- BENEFITS SECTION ---------- */
 .benefits {

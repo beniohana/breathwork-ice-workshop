@@ -22,39 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = scroll;
   }, { passive: true });
 
-  // ==================== MARQUEE (requestAnimationFrame infinite loop) ====================
-  (function initMarquee() {
-    const inner = document.getElementById('marqueeInner');
-    if (!inner) return;
-    const tracks = inner.querySelectorAll('.marquee-track');
-    if (tracks.length < 2) return;
-
-    let offset = 0;
-    const speed = 0.5; // pixels per frame
-    let trackWidth = tracks[0].offsetWidth;
-    let paused = false;
-    let rafId;
-
-    // Recalculate on resize
-    window.addEventListener('resize', () => { trackWidth = tracks[0].offsetWidth; });
-
-    // Pause on hover
-    inner.addEventListener('mouseenter', () => { paused = true; });
-    inner.addEventListener('mouseleave', () => { paused = false; });
-
-    function animate() {
-      if (!paused) {
-        offset -= speed;
-        if (Math.abs(offset) >= trackWidth) {
-          offset += trackWidth;
-        }
-        inner.style.transform = 'translateX(' + offset + 'px)';
-      }
-      rafId = requestAnimationFrame(animate);
-    }
-    rafId = requestAnimationFrame(animate);
-  })();
-
   // ==================== FAQ ACCORDION ====================
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
