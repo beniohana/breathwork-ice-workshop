@@ -814,6 +814,11 @@ body.lang-en .a11y-panel {
 
 
 /* ---------- LOGO MARQUEE ---------- */
+/*
+  Seamless infinite marquee. The track has two identical halves (each 12 logos).
+  translateX(-50%) shifts by exactly one half, so the loop-reset is invisible.
+  Duration is 60s (not 30s) because the track is now 2× wider — same visual speed.
+*/
 .marquee {
   position: relative;
   width: 100%;
@@ -854,7 +859,7 @@ body.lang-en .a11y-panel {
   align-items: center;
   width: max-content;
   will-change: transform;
-  animation: marqueeScroll 30s linear infinite;
+  animation: marqueeScroll 60s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
