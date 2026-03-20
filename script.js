@@ -159,10 +159,20 @@ document.addEventListener('DOMContentLoaded', () => {
     testimonialsGrid.addEventListener('scroll', () => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        const scrollPos = Math.abs(testimonialsGrid.scrollLeft);
-        const cardWidth = testimonialCards[0].offsetWidth + 16;
-        const active = Math.round(scrollPos / cardWidth);
-        dots.forEach((d, i) => d.classList.toggle('active', i === active));
+        const containerRect = testimonialsGrid.getBoundingClientRect();
+        const containerCenter = containerRect.left + containerRect.width / 2;
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        testimonialCards.forEach((card, i) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const distance = Math.abs(cardCenter - containerCenter);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = i;
+          }
+        });
+        dots.forEach((d, i) => d.classList.toggle('active', i === closestIndex));
       }, 50);
     });
   }
