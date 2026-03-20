@@ -1911,11 +1911,11 @@ body.lang-en .qa-arrow {
   }
 
   .marquee-logo {
-    padding: 0 20px;
+    padding: 0 24px;
   }
 
   .marquee-logo img {
-    height: 18px;
+    height: 30px;
   }
 
   /* Testimonials mobile — swipe carousel */
@@ -2151,11 +2151,11 @@ body.lang-en .qa-arrow {
   }
 
   .marquee-logo {
-    padding: 0 14px;
+    padding: 0 18px;
   }
 
   .marquee-logo img {
-    height: 14px;
+    height: 24px;
   }
 
   .benefits-grid {
