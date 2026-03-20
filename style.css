@@ -1842,10 +1842,10 @@ body.lang-en .qa-arrow {
     display: none;
   }
 
-  /* Hero mobile */
+  /* Hero mobile — shorter so marquee logos are visible at bottom of first screen */
   .hero {
-    min-height: calc(100vh - 64px);
-    min-height: calc(100dvh - 64px);
+    min-height: calc(100vh - 64px - 60px);
+    min-height: calc(100dvh - 64px - 60px);
     padding-top: 64px;
   }
 
@@ -1919,6 +1919,10 @@ body.lang-en .qa-arrow {
   .marquee::before,
   .marquee::after {
     width: 40px;
+  }
+
+  .marquee-track {
+    animation-duration: 25s;
   }
 
   .marquee-logo {
