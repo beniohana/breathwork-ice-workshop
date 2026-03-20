@@ -140,99 +140,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==================== TESTIMONIALS CAROUSEL ====================
   const testimonialsGrid = document.getElementById('testimonialsGrid');
-  const testimonialDots = document.getElementById('testimonialDots');
   const testimonialCards = document.querySelectorAll('.testimonial-card');
   const testimonialsRight = document.getElementById('testimonialsRight');
   const testimonialsLeft = document.getElementById('testimonialsLeft');
 
-  if (testimonialsGrid && testimonialDots && testimonialCards.length) {
+  if (testimonialsGrid && testimonialCards.length) {
     const isMobileView = () => window.innerWidth <= 768;
-    const cardsPerPage = () => isMobileView() ? 1 : 4;
-    let testimonialPage = 0;
+    let testimonialIndex = 0; // Index of leftmost visible card
 
-    function totalPages() {
-      return Math.ceil(testimonialCards.length / cardsPerPage());
-    }
-
-    // Build dots
-    function buildDots() {
-      testimonialDots.innerHTML = '';
-      const pages = isMobileView() ? testimonialCards.length : totalPages();
-      for (let i = 0; i < pages; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', `ביקורת ${i + 1}`);
-        dot.addEventListener('click', () => {
-          if (isMobileView()) {
-            testimonialCards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-          } else {
-            testimonialPage = i;
-            updateDesktopCarousel();
-          }
-        });
-        testimonialDots.appendChild(dot);
-      }
-    }
-    buildDots();
-
-    // Desktop: slide cards by translating the grid
+    // Desktop: shift by 1 card at a time, always show 4
     function updateDesktopCarousel() {
       if (isMobileView()) return;
-      const pages = totalPages();
-      if (testimonialPage >= pages) testimonialPage = 0;
-      if (testimonialPage < 0) testimonialPage = pages - 1;
-      const cardEl = testimonialCards[0];
+      const maxIndex = testimonialCards.length - 4;
+      if (testimonialIndex > maxIndex) testimonialIndex = 0;
+      if (testimonialIndex < 0) testimonialIndex = maxIndex;
       const gap = 20;
-      const cardWidth = cardEl.offsetWidth + gap;
-      const offset = testimonialPage * cardsPerPage() * cardWidth;
+      const cardWidth = testimonialCards[0].offsetWidth + gap;
+      const offset = testimonialIndex * cardWidth;
       testimonialsGrid.style.transform = `translateX(${offset}px)`;
       testimonialsGrid.style.transition = 'transform 0.4s ease';
-      const dots = testimonialDots.querySelectorAll('.dot');
-      dots.forEach((d, i) => d.classList.toggle('active', i === testimonialPage));
     }
 
-    // Arrow clicks (RTL: right arrow = next, left arrow = prev)
+    // Arrow clicks (RTL: right = next, left = prev)
     if (testimonialsRight) {
       testimonialsRight.addEventListener('click', () => {
-        testimonialPage++;
+        testimonialIndex++;
         updateDesktopCarousel();
       });
     }
     if (testimonialsLeft) {
       testimonialsLeft.addEventListener('click', () => {
-        testimonialPage--;
+        testimonialIndex--;
         updateDesktopCarousel();
       });
     }
 
-    // Mobile: scroll-based dot updates
-    let scrollTimeout;
-    testimonialsGrid.addEventListener('scroll', () => {
-      if (!isMobileView()) return;
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        const containerRect = testimonialsGrid.getBoundingClientRect();
-        const containerCenter = containerRect.left + containerRect.width / 2;
-        let closestIndex = 0;
-        let closestDistance = Infinity;
-        testimonialCards.forEach((card, i) => {
-          const cardRect = card.getBoundingClientRect();
-          const cardCenter = cardRect.left + cardRect.width / 2;
-          const distance = Math.abs(cardCenter - containerCenter);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestIndex = i;
-          }
-        });
-        const dots = testimonialDots.querySelectorAll('.dot');
-        dots.forEach((d, i) => d.classList.toggle('active', i === closestIndex));
-      }, 50);
-    });
-
-    // Rebuild dots and reset on resize
+    // Reset on resize
     window.addEventListener('resize', () => {
-      buildDots();
-      testimonialPage = 0;
+      testimonialIndex = 0;
       if (!isMobileView()) {
         testimonialsGrid.style.transform = 'translateX(0)';
       } else {
