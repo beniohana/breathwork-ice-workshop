@@ -825,6 +825,7 @@ body.lang-en .a11y-panel {
   overflow: hidden;
   background: var(--white);
   padding: 24px 0;
+  direction: ltr; /* Force LTR so translateX(-50%) scrolls correctly in this RTL page */
 }
 
 /* Subtle edge fade */
