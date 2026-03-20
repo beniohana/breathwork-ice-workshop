@@ -1842,10 +1842,10 @@ body.lang-en .qa-arrow {
     display: none;
   }
 
-  /* Hero mobile — shorter so marquee logos are visible at bottom of first screen */
+  /* Hero mobile — full screen, marquee peeks ~20px from bottom as scroll hint */
   .hero {
-    min-height: calc(100vh - 64px - 60px);
-    min-height: calc(100dvh - 64px - 60px);
+    min-height: calc(100vh - 64px + 20px);
+    min-height: calc(100dvh - 64px + 20px);
     padding-top: 64px;
   }
 
