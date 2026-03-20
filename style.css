@@ -856,13 +856,13 @@ body.lang-en .a11y-panel {
 }
 
 .marquee-track {
-  display: flex;
+  display: inline-flex;
   flex-wrap: nowrap;
-  flex-direction: row;
   align-items: center;
-  width: max-content;
   direction: ltr;
   will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   animation: marqueeScroll 60s linear infinite;
 }
 
@@ -1845,10 +1845,10 @@ body.lang-en .qa-arrow {
     display: none;
   }
 
-  /* Hero mobile — full screen, marquee peeks ~20px from bottom as scroll hint */
+  /* Hero mobile — full screen, marquee logos barely peek from bottom as scroll hint */
   .hero {
-    min-height: calc(100vh - 64px + 20px);
-    min-height: calc(100dvh - 64px + 20px);
+    min-height: calc(100vh - 15px);
+    min-height: calc(100dvh - 15px);
     padding-top: 64px;
   }
 
