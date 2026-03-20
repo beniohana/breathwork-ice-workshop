@@ -1111,11 +1111,17 @@ body.lang-en .lightbox-close {
   background: var(--ice-50);
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+/* Desktop carousel wrapper */
+.testimonials-carousel {
+  position: relative;
   margin-top: 40px;
+}
+
+.testimonials-grid {
+  display: flex;
+  overflow: hidden;
+  gap: 20px;
+  scroll-behavior: smooth;
 }
 
 .testimonial-card {
@@ -1127,11 +1133,45 @@ body.lang-en .lightbox-close {
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 0 0 calc(25% - 15px);
+  min-width: 0;
 }
 
 .testimonial-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Desktop arrows */
+.testimonials-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--ice-200);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.testimonials-arrow:hover {
+  background: var(--ice-50);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.testimonials-arrow-right {
+  right: -22px;
+}
+
+.testimonials-arrow-left {
+  left: -22px;
 }
 
 .testimonial-text {
@@ -1166,7 +1206,7 @@ body.lang-en .lightbox-close {
 }
 
 .testimonials-dots {
-  display: none;
+  display: flex;
   justify-content: center;
   gap: 8px;
   margin-top: 20px;
@@ -1940,7 +1980,11 @@ body.lang-en .qa-arrow {
     height: 22px;
   }
 
-  /* Testimonials mobile — swipe carousel */
+  /* Testimonials mobile — swipe carousel, hide arrows */
+  .testimonials-arrow {
+    display: none;
+  }
+
   .testimonials-grid {
     display: flex;
     overflow-x: auto;
@@ -1958,14 +2002,11 @@ body.lang-en .qa-arrow {
   .testimonial-card {
     width: calc(100vw - 64px);
     min-width: calc(100vw - 64px);
+    flex: none;
     scroll-snap-align: center;
     padding: 24px 20px;
     flex-shrink: 0;
     font-size: 0.85rem;
-  }
-
-  .testimonials-dots {
-    display: flex;
   }
 
   /* Benefits mobile */
