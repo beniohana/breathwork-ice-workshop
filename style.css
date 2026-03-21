@@ -2064,12 +2064,13 @@ body.lang-en .qa-arrow {
 
   .benefit-item {
     padding: 24px 16px;
+    text-align: right;
   }
 
   .benefit-icon {
     width: 44px;
     height: 44px;
-    margin-bottom: 14px;
+    margin: 0 0 14px;
   }
 
   .benefit-item h3 {
