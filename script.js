@@ -261,9 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const diff = tTouchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
-        setTActive(tActive - 1);
-      } else {
         setTActive(tActive + 1);
+      } else {
+        setTActive(tActive - 1);
       }
     }
     tSwipeLocked = false;
@@ -631,9 +631,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const diff = stackTouchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
-        setStackActive(stackActive + 1);
-      } else {
         setStackActive(stackActive - 1);
+      } else {
+        setStackActive(stackActive + 1);
       }
     }
     stackSwipeLocked = false;

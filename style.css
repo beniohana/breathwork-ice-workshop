@@ -2026,8 +2026,7 @@ body.lang-en .qa-arrow {
   }
 
   .testimonial-arrow {
-    width: 36px;
-    height: 36px;
+    display: none;
   }
 
   .testimonial-arrow svg {
