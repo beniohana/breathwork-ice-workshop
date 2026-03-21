@@ -140,13 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==================== TESTIMONIALS CAROUSEL ====================
   const tCards = document.querySelectorAll('.testimonial-card');
-  const tContainer = document.getElementById('testimonialsContainer');
   const tStage = document.getElementById('testimonialsStage');
   const tDotsContainer = document.getElementById('testimonialDots');
   const tRightBtn = document.getElementById('testimonialsRight');
   const tLeftBtn = document.getElementById('testimonialsLeft');
   const tLen = tCards.length;
-  let tActive = 1; // center card index (start at 1 so we see cards 0,1,2)
+  let tActive = 1; // center card index
   let tHovering = false;
 
   // Build dots
@@ -159,44 +158,59 @@ document.addEventListener('DOMContentLoaded', () => {
   const tDots = tDotsContainer.querySelectorAll('.dot');
 
   function setTActive(index) {
-    const isMobile = window.innerWidth <= 768;
-    if (isMobile) {
-      if (index < 0) index = tLen - 1;
-      if (index >= tLen) index = 0;
-    } else {
-      // Desktop: center card, so first visible = index-1, last = index+1
-      if (index < 1) index = tLen - 2;
-      if (index > tLen - 2) index = 1;
-    }
+    if (index < 0) index = tLen - 1;
+    if (index >= tLen) index = 0;
     tActive = index;
     layoutTestimonials();
   }
 
   function layoutTestimonials() {
     const isMobile = window.innerWidth <= 768;
-    const gap = isMobile ? 0 : 20;
     const stageWidth = tStage.offsetWidth;
+    const gap = isMobile ? 0 : 20;
+    const cardWidth = isMobile ? stageWidth : (stageWidth - gap * 2) / 3;
 
-    if (isMobile) {
-      const cardWidth = stageWidth;
-      tCards.forEach((card, i) => {
-        card.style.flex = `0 0 ${cardWidth}px`;
-        card.classList.toggle('t-active', i === tActive);
-        card.classList.remove('t-side');
-      });
-      const offset = tActive * cardWidth;
-      tContainer.style.transform = `translateX(${offset}px)`;
-    } else {
-      const cardWidth = (stageWidth - gap * 2) / 3;
-      tCards.forEach((card, i) => {
-        card.style.flex = `0 0 ${cardWidth}px`;
-        card.classList.toggle('t-active', i === tActive);
-        card.classList.toggle('t-side', i !== tActive);
-      });
-      // Slide so that tActive is in the center: first visible = tActive - 1
-      const offset = (tActive - 1) * (cardWidth + gap);
-      tContainer.style.transform = `translateX(${offset}px)`;
-    }
+    tCards.forEach((card, i) => {
+      // Signed offset with wrapping (infinite)
+      let off = i - tActive;
+      if (off > tLen / 2) off -= tLen;
+      if (off < -tLen / 2) off += tLen;
+      const abs = Math.abs(off);
+
+      card.style.width = `${cardWidth}px`;
+
+      if (isMobile) {
+        // Mobile: show only active card
+        if (off === 0) {
+          card.style.transform = 'translateX(0) scale(1)';
+          card.style.opacity = '1';
+          card.style.pointerEvents = 'auto';
+          card.classList.add('t-active');
+          card.classList.remove('t-side');
+        } else {
+          card.style.transform = `translateX(${off > 0 ? 300 : -300}px) scale(0.85)`;
+          card.style.opacity = '0';
+          card.style.pointerEvents = 'none';
+          card.classList.remove('t-active', 't-side');
+        }
+      } else {
+        // Desktop: show 3 cards (center + 2 sides), hide rest
+        if (abs > 1) {
+          card.style.opacity = '0';
+          card.style.pointerEvents = 'none';
+          card.style.transform = `translateX(${off > 0 ? 500 : -500}px) scale(0.85)`;
+          card.classList.remove('t-active', 't-side');
+          return;
+        }
+
+        const x = off * (cardWidth + gap);
+        card.style.transform = `translateX(${x}px) scale(${off === 0 ? 1 : 0.93})`;
+        card.style.opacity = off === 0 ? '1' : '0.55';
+        card.style.pointerEvents = 'auto';
+        card.classList.toggle('t-active', off === 0);
+        card.classList.toggle('t-side', off !== 0);
+      }
+    });
 
     tDots.forEach((dot, i) => dot.classList.toggle('active', i === tActive));
   }

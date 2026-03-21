@@ -26,8 +26,8 @@
   --frost: #f0f7ff;
   --dark: #0c1b2e;
   --dark-soft: #1a2d45;
-  --text: #1e3a5f;
-  --text-light: #5a7ea5;
+  --text: #152d4a;
+  --text-light: #3a5f82;
 
   /* Typography */
   --font-he: 'Heebo', sans-serif;
@@ -1160,19 +1160,21 @@ body.lang-en .lightbox-close {
 .testimonials-stage {
   position: relative;
   flex: 1;
+  height: 280px;
   min-width: 0;
-  overflow: hidden;
   outline: none;
 }
 
 .testimonials-container {
+  position: absolute;
+  inset: 0;
   display: flex;
-  direction: rtl;
-  gap: 20px;
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  align-items: center;
+  justify-content: center;
 }
 
 .testimonial-card {
+  position: absolute;
   background: var(--white);
   border-radius: 14px;
   padding: 24px 22px;
@@ -1180,22 +1182,17 @@ body.lang-en .lightbox-close {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 0 0 calc((100% - 40px) / 3);
-  min-width: 0;
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease, opacity 0.5s ease;
-  opacity: 0.55;
-  transform: scale(0.93);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, opacity;
+  direction: rtl;
 }
 
 .testimonial-card.t-active {
-  opacity: 1;
-  transform: scale(1);
   box-shadow: 0 12px 36px rgba(14, 165, 233, 0.12);
   border-color: var(--ice-300);
 }
 
 .testimonial-card.t-active:hover {
-  transform: scale(1) translateY(-4px);
   box-shadow: 0 16px 40px rgba(14, 165, 233, 0.18);
 }
 
@@ -1703,7 +1700,7 @@ body.lang-en .qa-arrow {
   font-size: 0.88rem;
   line-height: 1.7;
   color: var(--text-light);
-  padding-right: 28px;
+  text-align: right;
 }
 
 /* Responsive */
@@ -1939,8 +1936,9 @@ body.lang-en .qa-arrow {
   }
 
   .hero-subtitle {
+    font-size: clamp(1rem, 3.8vw, 1.2rem);
     margin-bottom: 30px;
-    max-width: 280px;
+    max-width: 320px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -2010,14 +2008,13 @@ body.lang-en .qa-arrow {
   }
 
   /* Testimonials mobile — single card carousel */
-  .testimonial-card {
-    flex: 0 0 100%;
-    padding: 24px 20px;
-    font-size: 0.85rem;
+  .testimonials-stage {
+    height: 260px;
   }
 
-  .testimonials-container {
-    gap: 0;
+  .testimonial-card {
+    padding: 24px 20px;
+    font-size: 0.85rem;
   }
 
   .testimonial-arrow {
@@ -2225,8 +2222,8 @@ body.lang-en .qa-arrow {
   }
 
   .hero-subtitle {
-    font-size: 0.92rem;
-    max-width: 240px;
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+    max-width: 280px;
   }
 
   .hero-ice-cube-wrapper {
