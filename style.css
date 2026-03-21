@@ -1164,7 +1164,6 @@ body.lang-en .lightbox-close {
 .testimonials-stage {
   position: relative;
   flex: 1;
-  height: 280px;
   min-width: 0;
   outline: none;
 }
@@ -1933,10 +1932,15 @@ body.lang-en .qa-arrow {
   .hero-title {
     font-size: clamp(2.8rem, 12vw, 4.5rem);
     line-height: 1.1;
+    text-align: center;
   }
 
   .mobile-br {
     display: inline;
+  }
+
+  .mobile-hide {
+    display: none;
   }
 
   .hero-subtitle {
@@ -2012,10 +2016,6 @@ body.lang-en .qa-arrow {
   }
 
   /* Testimonials mobile — single card carousel */
-  .testimonials-stage {
-    height: 260px;
-  }
-
   .testimonial-card {
     padding: 24px 20px;
     font-size: 0.85rem;

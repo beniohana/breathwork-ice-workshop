@@ -169,14 +169,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const gap = isMobile ? 0 : 20;
     const cardWidth = isMobile ? stageWidth : (stageWidth - gap * 2) / 3;
 
+    // Measure tallest card to set uniform height
+    let maxH = 0;
+    tCards.forEach(card => {
+      card.style.width = `${cardWidth}px`;
+      card.style.height = 'auto';
+    });
+    tCards.forEach(card => {
+      const h = card.scrollHeight;
+      if (h > maxH) maxH = h;
+    });
+    tCards.forEach(card => {
+      card.style.height = `${maxH}px`;
+    });
+    tStage.style.height = `${maxH}px`;
+
     tCards.forEach((card, i) => {
       // Signed offset with wrapping (infinite)
       let off = i - tActive;
       if (off > tLen / 2) off -= tLen;
       if (off < -tLen / 2) off += tLen;
       const abs = Math.abs(off);
-
-      card.style.width = `${cardWidth}px`;
 
       if (isMobile) {
         // Mobile: show only active card
