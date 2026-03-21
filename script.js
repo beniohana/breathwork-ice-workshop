@@ -505,7 +505,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const stackLeftBtn = document.getElementById('stackLeft');
   const stackLen = stackCards.length;
   let stackActive = 1; // Start at 1 so we see 0,1,2
-  let stackHovering = false;
 
   // Build dots
   for (let i = 0; i < stackLen; i++) {
@@ -639,25 +638,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     stackSwipeLocked = false;
   }, { passive: true });
-
-  // Auto-advance
-  let stackInterval = setInterval(() => {
-    if (stackHovering) return;
-    setStackActive(stackActive + 1);
-  }, 3500);
-
-  const stackWrapper = document.querySelector('.card-stack-wrapper');
-  stackWrapper.addEventListener('mouseenter', () => {
-    stackHovering = true;
-    clearInterval(stackInterval);
-  });
-
-  stackWrapper.addEventListener('mouseleave', () => {
-    stackHovering = false;
-    stackInterval = setInterval(() => {
-      setStackActive(stackActive + 1);
-    }, 3500);
-  });
 
   // Recalculate on resize
   window.addEventListener('resize', layoutStack);
