@@ -1381,7 +1381,7 @@ body.lang-en .faq-arrow {
 
 .faq-cta {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 56px;
 }
 
 /* ---------- CARD STACK GALLERY ---------- */
@@ -2180,7 +2180,7 @@ body.lang-en .qa-arrow {
 
   /* FAQ CTA button mobile */
   .faq-cta {
-    margin-top: 28px;
+    margin-top: 40px;
   }
 
   /* Footer mobile */
