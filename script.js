@@ -229,9 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   layoutTestimonials();
 
-  // Arrow buttons — visual direction matches click
-  tRightBtn.addEventListener('click', () => setTActive(tActive + 1));
-  tLeftBtn.addEventListener('click', () => setTActive(tActive - 1));
+  // Arrow buttons — right arrow: show card from right, dot moves right
+  tRightBtn.addEventListener('click', () => setTActive(tActive - 1));
+  tLeftBtn.addEventListener('click', () => setTActive(tActive + 1));
 
   // Keyboard
   tStage.addEventListener('keydown', (e) => {
@@ -260,10 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
   tStage.addEventListener('touchend', (e) => {
     const diff = tTouchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 50) {
+      // Swipe left (diff>0) → dot moves right; swipe right (diff<0) → dot moves left
       if (diff > 0) {
-        setTActive(tActive + 1);
-      } else {
         setTActive(tActive - 1);
+      } else {
+        setTActive(tActive + 1);
       }
     }
     tSwipeLocked = false;
