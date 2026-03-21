@@ -1944,9 +1944,9 @@ body.lang-en .qa-arrow {
   }
 
   .hero-subtitle {
-    font-size: clamp(1rem, 3.8vw, 1.2rem);
+    font-size: clamp(1.1rem, 4.5vw, 1.35rem);
     margin-bottom: 30px;
-    max-width: 320px;
+    max-width: 340px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -2226,8 +2226,8 @@ body.lang-en .qa-arrow {
   }
 
   .hero-subtitle {
-    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
-    max-width: 280px;
+    font-size: clamp(1.05rem, 4.2vw, 1.25rem);
+    max-width: 300px;
   }
 
   .hero-ice-cube-wrapper {
