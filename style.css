@@ -642,6 +642,10 @@ body.lang-en .a11y-panel {
   color: #3E9ED3;
 }
 
+.mobile-br {
+  display: none;
+}
+
 .marker-line {
   position: absolute;
   bottom: -2px;
@@ -1190,10 +1194,6 @@ body.lang-en .lightbox-close {
 .testimonial-card.t-active {
   box-shadow: 0 12px 36px rgba(14, 165, 233, 0.12);
   border-color: var(--ice-300);
-}
-
-.testimonial-card.t-active:hover {
-  box-shadow: 0 16px 40px rgba(14, 165, 233, 0.18);
 }
 
 .testimonial-text {
@@ -1933,6 +1933,10 @@ body.lang-en .qa-arrow {
   .hero-title {
     font-size: clamp(2.8rem, 12vw, 4.5rem);
     line-height: 1.1;
+  }
+
+  .mobile-br {
+    display: inline;
   }
 
   .hero-subtitle {

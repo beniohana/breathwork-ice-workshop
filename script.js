@@ -146,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const tLeftBtn = document.getElementById('testimonialsLeft');
   const tLen = tCards.length;
   let tActive = 1; // center card index
-  let tHovering = false;
 
   // Build dots
   for (let i = 0; i < tLen; i++) {
@@ -182,13 +181,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isMobile) {
         // Mobile: show only active card
         if (off === 0) {
-          card.style.transform = 'translateX(0) scale(1)';
+          card.style.transform = 'translateX(0)';
           card.style.opacity = '1';
           card.style.pointerEvents = 'auto';
           card.classList.add('t-active');
           card.classList.remove('t-side');
         } else {
-          card.style.transform = `translateX(${off > 0 ? 300 : -300}px) scale(0.85)`;
+          card.style.transform = `translateX(${off > 0 ? 300 : -300}px)`;
           card.style.opacity = '0';
           card.style.pointerEvents = 'none';
           card.classList.remove('t-active', 't-side');
@@ -198,13 +197,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (abs > 1) {
           card.style.opacity = '0';
           card.style.pointerEvents = 'none';
-          card.style.transform = `translateX(${off > 0 ? 500 : -500}px) scale(0.85)`;
+          card.style.transform = `translateX(${off > 0 ? 500 : -500}px)`;
           card.classList.remove('t-active', 't-side');
           return;
         }
 
         const x = off * (cardWidth + gap);
-        card.style.transform = `translateX(${x}px) scale(${off === 0 ? 1 : 0.93})`;
+        card.style.transform = `translateX(${x}px)`;
         card.style.opacity = off === 0 ? '1' : '0.55';
         card.style.pointerEvents = 'auto';
         card.classList.toggle('t-active', off === 0);
@@ -217,14 +216,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   layoutTestimonials();
 
-  // Arrow buttons (visual direction for RTL)
-  tRightBtn.addEventListener('click', () => setTActive(tActive - 1));
-  tLeftBtn.addEventListener('click', () => setTActive(tActive + 1));
+  // Arrow buttons — visual direction matches click
+  tRightBtn.addEventListener('click', () => setTActive(tActive + 1));
+  tLeftBtn.addEventListener('click', () => setTActive(tActive - 1));
 
   // Keyboard
   tStage.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') setTActive(tActive - 1);
-    if (e.key === 'ArrowLeft') setTActive(tActive + 1);
+    if (e.key === 'ArrowRight') setTActive(tActive + 1);
+    if (e.key === 'ArrowLeft') setTActive(tActive - 1);
   });
 
   // Touch swipe
@@ -256,22 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     tSwipeLocked = false;
   }, { passive: true });
-
-  // Auto-advance
-  let tInterval = setInterval(() => {
-    if (tHovering) return;
-    setTActive(tActive + 1);
-  }, 4000);
-
-  const tWrapper = document.querySelector('.testimonials-wrapper');
-  tWrapper.addEventListener('mouseenter', () => {
-    tHovering = true;
-    clearInterval(tInterval);
-  });
-  tWrapper.addEventListener('mouseleave', () => {
-    tHovering = false;
-    tInterval = setInterval(() => setTActive(tActive + 1), 4000);
-  });
 
   window.addEventListener('resize', layoutTestimonials);
 
