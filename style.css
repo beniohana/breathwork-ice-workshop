@@ -718,22 +718,54 @@ body.lang-en .a11y-panel {
 }
 
 .btn-primary {
+  background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 40%, #0284c7 100%);
   color: var(--white);
   box-shadow: 0 4px 20px rgba(14, 165, 233, 0.25);
-  background: linear-gradient(
-    90deg,
-    #0284c7, #0ea5e9, #38bdf8, #7dd3fc, #38bdf8, #0ea5e9, #0284c7
-  );
-  background-size: 300% 100%;
-  animation: btnGradientFlow 5s ease infinite;
 }
 
-.btn-primary::before,
+/* Ice sparkles inside button */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 2px at 20% 40%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(circle 1.5px at 60% 30%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(circle 2px at 80% 60%, rgba(255,255,255,0.85) 0%, transparent 100%),
+    radial-gradient(circle 1px at 40% 70%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(circle 1.5px at 15% 65%, rgba(255,255,255,0.75) 0%, transparent 100%),
+    radial-gradient(circle 2px at 90% 35%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(circle 1px at 50% 50%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(circle 1.5px at 70% 75%, rgba(255,255,255,0.7) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  animation: iceSparkleFloat 3s ease-in-out infinite;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+/* Frost sweep effect */
 .btn-primary::after {
-  display: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 40%, rgba(186,230,253,0.3) 50%, rgba(255,255,255,0.2) 60%, transparent 100%);
+  transition: none;
+  z-index: -1;
+}
+
+.btn-primary:hover::after {
+  animation: frostSweep 0.8s ease forwards;
 }
 
 .btn-primary:hover {
+  background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 40%, #0ea5e9 100%);
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(14, 165, 233, 0.4), 0 0 20px rgba(56, 189, 248, 0.2);
 }
@@ -742,10 +774,9 @@ body.lang-en .a11y-panel {
   transform: translateY(0);
 }
 
-@keyframes btnGradientFlow {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes frostSweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 @keyframes iceSparkleFloat {
