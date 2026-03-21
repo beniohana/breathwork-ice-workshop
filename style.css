@@ -2020,6 +2020,24 @@ body.lang-en .qa-arrow {
   }
 
   /* Testimonials mobile — single card carousel */
+  .testimonials-section {
+    padding: 50px 0 40px;
+  }
+
+  .testimonials-section .section-title {
+    text-align: right;
+    padding-right: 16px;
+  }
+
+  .testimonials-wrapper {
+    padding: 0 16px;
+  }
+
+  .testimonials-stage {
+    touch-action: pan-y;
+    cursor: grab;
+  }
+
   .testimonial-card {
     padding: 24px 20px;
     font-size: 0.85rem;
@@ -2029,9 +2047,13 @@ body.lang-en .qa-arrow {
     display: none;
   }
 
-  .testimonial-arrow svg {
-    width: 18px;
-    height: 18px;
+  .testimonials-dots .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .testimonials-dots {
+    margin-top: 16px;
   }
 
   /* Benefits mobile */
