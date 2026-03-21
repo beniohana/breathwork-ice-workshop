@@ -638,6 +638,10 @@ body.lang-en .a11y-panel {
   display: inline-block;
 }
 
+.dot-orange {
+  color: #e8772e;
+}
+
 .marker-line {
   position: absolute;
   bottom: -2px;
