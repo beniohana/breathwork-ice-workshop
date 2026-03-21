@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=39">
+  <link rel="stylesheet" href="style.css?v=40">
   <style>
     /* Fallback: if JS hasn't revealed elements after 3s, show them anyway */
     @keyframes forceReveal {
@@ -356,42 +356,56 @@
 <section class="testimonials-section" id="testimonials">
   <div class="container">
     <h2 class="section-title reveal-up">מה אומרים עלינו</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal-up">
-        <div class="testimonial-text">
-          <p>גבריאל רציתי להגיד לך תודה! זו חוויה שקצת פחדתי ממנה... יש בך משהו ממש מרגיע, וזה עזר לי להיכנס לזה ולהיות שם באמת. הרגשתי שמשהו השתחרר, ויצאתי עם כוחות ואנרגיה להמשך. אני עדיין עם חיוך. ממש תודה על הכל וברור שאחזור.</p>
+  </div>
+
+  <div class="testimonials-wrapper">
+    <button class="testimonial-arrow testimonial-arrow-left" id="testimonialsLeft" aria-label="שמאלה">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <div class="testimonials-stage" id="testimonialsStage" tabindex="0">
+      <div class="testimonials-container" id="testimonialsContainer">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            <p>גבריאל רציתי להגיד לך תודה! זו חוויה שקצת פחדתי ממנה... יש בך משהו ממש מרגיע, וזה עזר לי להיכנס לזה ולהיות שם באמת. הרגשתי שמשהו השתחרר, ויצאתי עם כוחות ואנרגיה להמשך. אני עדיין עם חיוך. ממש תודה על הכל וברור שאחזור.</p>
+          </div>
+          <div class="testimonial-author">
+            <span class="testimonial-name">נעמי חסון</span>
+          </div>
         </div>
-        <div class="testimonial-author">
-          <span class="testimonial-name">נעמי חסון</span>
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            <p>ואוווו גבריאל, רציתי להגיד לך ממש תודה! זו חוויה שרציתי לעשות מלא זמן וקצת פחדתי... והצלחת לגרום לי להרגיש הכי בנוח בעולם! הייתה לי חוויה מדהימה ואני עדיין עם חיוך מאוזן לאוזן! ממש תודה על הכל!! עוד אחזור.</p>
+          </div>
+          <div class="testimonial-author">
+            <span class="testimonial-name">מיכל ישראל</span>
+          </div>
         </div>
-      </div>
-      <div class="testimonial-card reveal-up">
-        <div class="testimonial-text">
-          <p>ואוווו גבריאל, רציתי להגיד לך ממש תודה! זו חוויה שרציתי לעשות מלא זמן וקצת פחדתי... והצלחת לגרום לי להרגיש הכי בנוח בעולם! הייתה לי חוויה מדהימה ואני עדיין עם חיוך מאוזן לאוזן! ממש תודה על הכל!! עוד אחזור.</p>
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            <p>עברתי על המשובים המעולים, מפרגנים לריטריט ולך באופן אישי! חשוב שתדע שהחברה של הקרח ממש ממש לא מפסיקים לכתוב ולשבח!! שידעו זה ממש מחמם את הלב מה שכתבו עליהם ואני גם צפיתי בהם (וראיתי אחרים בתחום בעבר) והם ממש ברמה אחרת ממש מעומק נפשם....</p>
+          </div>
+          <div class="testimonial-author">
+            <span class="testimonial-name">רוני טל</span>
+          </div>
         </div>
-        <div class="testimonial-author">
-          <span class="testimonial-name">מיכל ישראל</span>
-        </div>
-      </div>
-      <div class="testimonial-card reveal-up">
-        <div class="testimonial-text">
-          <p>עברתי על המשובים המעולים, מפרגנים לריטריט ולך באופן אישי! חשוב שתדע שהחברה של הקרח ממש ממש לא מפסיקים לכתוב ולשבח!! שידעו זה ממש מחמם את הלב מה שכתבו עליהם ואני גם צפיתי בהם (וראיתי אחרים בתחום בעבר) והם ממש ברמה אחרת ממש מעומק נפשם....</p>
-        </div>
-        <div class="testimonial-author">
-          <span class="testimonial-name">רוני טל</span>
-        </div>
-      </div>
-      <div class="testimonial-card reveal-up">
-        <div class="testimonial-text">
-          <p>האמת שהיה לי ממש מגניב ויציאה מהקופסה של עצמי, מאזור הנוחות שלי. נשימות וקרח זה לא משהו שאני רגיל אליו. מעריך אותך מאוד על ההקשבה והאווירה הטובה. מחכה לפעם הבאה :) תודה על המתנה!</p>
-        </div>
-        <div class="testimonial-author">
-          <span class="testimonial-name">אביאל גרמאי</span>
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            <p>האמת שהיה לי ממש מגניב ויציאה מהקופסה של עצמי, מאזור הנוחות שלי. נשימות וקרח זה לא משהו שאני רגיל אליו. מעריך אותך מאוד על ההקשבה והאווירה הטובה. מחכה לפעם הבאה :) תודה על המתנה!</p>
+          </div>
+          <div class="testimonial-author">
+            <span class="testimonial-name">אביאל גרמאי</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="testimonials-dots" id="testimonialDots"></div>
+
+    <button class="testimonial-arrow testimonial-arrow-right" id="testimonialsRight" aria-label="ימינה">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
   </div>
+
+  <div class="testimonials-dots" id="testimonialDots"></div>
 </section>
 
 <!-- ==================== SECTION 6 — FAQ ==================== -->
@@ -521,6 +535,6 @@
   <div class="lightbox-content" id="lightboxContent"></div>
 </div>
 
-<script src="script.js?v=39"></script>
+<script src="script.js?v=40"></script>
 </body>
 </html>

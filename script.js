@@ -138,44 +138,115 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // ==================== TESTIMONIALS CAROUSEL DOTS ====================
-  const testimonialsGrid = document.querySelector('.testimonials-grid');
-  const testimonialDots = document.getElementById('testimonialDots');
-  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  // ==================== TESTIMONIALS CAROUSEL ====================
+  const tCards = document.querySelectorAll('.testimonial-card');
+  const tContainer = document.getElementById('testimonialsContainer');
+  const tStage = document.getElementById('testimonialsStage');
+  const tDotsContainer = document.getElementById('testimonialDots');
+  const tRightBtn = document.getElementById('testimonialsRight');
+  const tLeftBtn = document.getElementById('testimonialsLeft');
+  const tLen = tCards.length;
+  let tActive = 0;
+  let tHovering = false;
 
-  if (testimonialsGrid && testimonialDots && testimonialCards.length) {
-    testimonialCards.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', `ביקורת ${i + 1}`);
-      dot.addEventListener('click', () => {
-        testimonialCards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      });
-      testimonialDots.appendChild(dot);
-    });
-
-    const dots = testimonialDots.querySelectorAll('.dot');
-    let scrollTimeout;
-    testimonialsGrid.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        const containerRect = testimonialsGrid.getBoundingClientRect();
-        const containerCenter = containerRect.left + containerRect.width / 2;
-        let closestIndex = 0;
-        let closestDistance = Infinity;
-        testimonialCards.forEach((card, i) => {
-          const cardRect = card.getBoundingClientRect();
-          const cardCenter = cardRect.left + cardRect.width / 2;
-          const distance = Math.abs(cardCenter - containerCenter);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestIndex = i;
-          }
-        });
-        dots.forEach((d, i) => d.classList.toggle('active', i === closestIndex));
-      }, 50);
-    });
+  // Build dots
+  for (let i = 0; i < tLen; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === tActive ? ' active' : '');
+    dot.addEventListener('click', () => setTActive(i));
+    tDotsContainer.appendChild(dot);
   }
+  const tDots = tDotsContainer.querySelectorAll('.dot');
+
+  function getVisibleCount() {
+    return window.innerWidth <= 768 ? 1 : 3;
+  }
+
+  function setTActive(index) {
+    const visible = getVisibleCount();
+    const maxIndex = tLen - visible;
+    if (index < 0) index = maxIndex;
+    if (index > maxIndex) index = 0;
+    tActive = index;
+    layoutTestimonials();
+  }
+
+  function layoutTestimonials() {
+    const visible = getVisibleCount();
+    const gap = visible === 1 ? 0 : 20;
+    const stageWidth = tStage.offsetWidth;
+    const cardWidth = (stageWidth - gap * (visible - 1)) / visible;
+
+    tCards.forEach(card => {
+      card.style.flex = `0 0 ${cardWidth}px`;
+    });
+
+    // RTL: positive translateX moves cards to the right (visually "back")
+    const offset = tActive * (cardWidth + gap);
+    tContainer.style.transform = `translateX(${offset}px)`;
+
+    tDots.forEach((dot, i) => dot.classList.toggle('active', i === tActive));
+  }
+
+  layoutTestimonials();
+
+  // Arrow buttons (visual direction for RTL)
+  tRightBtn.addEventListener('click', () => setTActive(tActive - 1));
+  tLeftBtn.addEventListener('click', () => setTActive(tActive + 1));
+
+  // Keyboard
+  tStage.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') setTActive(tActive - 1);
+    if (e.key === 'ArrowLeft') setTActive(tActive + 1);
+  });
+
+  // Touch swipe
+  let tTouchStartX = 0;
+  let tTouchStartY = 0;
+  let tSwipeLocked = false;
+
+  tStage.addEventListener('touchstart', (e) => {
+    tTouchStartX = e.changedTouches[0].screenX;
+    tTouchStartY = e.changedTouches[0].screenY;
+    tSwipeLocked = false;
+  }, { passive: true });
+
+  tStage.addEventListener('touchmove', (e) => {
+    const dx = Math.abs(e.changedTouches[0].screenX - tTouchStartX);
+    const dy = Math.abs(e.changedTouches[0].screenY - tTouchStartY);
+    if (!tSwipeLocked && dx > 10 && dx > dy) tSwipeLocked = true;
+    if (tSwipeLocked) e.preventDefault();
+  }, { passive: false });
+
+  tStage.addEventListener('touchend', (e) => {
+    const diff = tTouchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        setTActive(tActive - 1);
+      } else {
+        setTActive(tActive + 1);
+      }
+    }
+    tSwipeLocked = false;
+  }, { passive: true });
+
+  // Auto-advance
+  let tInterval = setInterval(() => {
+    if (tHovering) return;
+    setTActive(tActive + 1);
+  }, 4000);
+
+  const tWrapper = document.querySelector('.testimonials-wrapper');
+  tWrapper.addEventListener('mouseenter', () => {
+    tHovering = true;
+    clearInterval(tInterval);
+  });
+  tWrapper.addEventListener('mouseleave', () => {
+    tHovering = false;
+    tInterval = setInterval(() => setTActive(tActive + 1), 4000);
+  });
+
+  window.addEventListener('resize', layoutTestimonials);
 
   // ==================== DEVICE DETECTION ====================
   const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
