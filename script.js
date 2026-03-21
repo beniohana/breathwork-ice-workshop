@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tRightBtn = document.getElementById('testimonialsRight');
   const tLeftBtn = document.getElementById('testimonialsLeft');
   const tLen = tCards.length;
-  let tActive = 0;
+  let tActive = 1; // center card index (start at 1 so we see cards 0,1,2)
   let tHovering = false;
 
   // Build dots
@@ -158,32 +158,45 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const tDots = tDotsContainer.querySelectorAll('.dot');
 
-  function getVisibleCount() {
-    return window.innerWidth <= 768 ? 1 : 3;
-  }
-
   function setTActive(index) {
-    const visible = getVisibleCount();
-    const maxIndex = tLen - visible;
-    if (index < 0) index = maxIndex;
-    if (index > maxIndex) index = 0;
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      if (index < 0) index = tLen - 1;
+      if (index >= tLen) index = 0;
+    } else {
+      // Desktop: center card, so first visible = index-1, last = index+1
+      if (index < 1) index = tLen - 2;
+      if (index > tLen - 2) index = 1;
+    }
     tActive = index;
     layoutTestimonials();
   }
 
   function layoutTestimonials() {
-    const visible = getVisibleCount();
-    const gap = visible === 1 ? 0 : 20;
+    const isMobile = window.innerWidth <= 768;
+    const gap = isMobile ? 0 : 20;
     const stageWidth = tStage.offsetWidth;
-    const cardWidth = (stageWidth - gap * (visible - 1)) / visible;
 
-    tCards.forEach(card => {
-      card.style.flex = `0 0 ${cardWidth}px`;
-    });
-
-    // RTL: positive translateX moves cards to the right (visually "back")
-    const offset = tActive * (cardWidth + gap);
-    tContainer.style.transform = `translateX(${offset}px)`;
+    if (isMobile) {
+      const cardWidth = stageWidth;
+      tCards.forEach((card, i) => {
+        card.style.flex = `0 0 ${cardWidth}px`;
+        card.classList.toggle('t-active', i === tActive);
+        card.classList.remove('t-side');
+      });
+      const offset = tActive * cardWidth;
+      tContainer.style.transform = `translateX(${offset}px)`;
+    } else {
+      const cardWidth = (stageWidth - gap * 2) / 3;
+      tCards.forEach((card, i) => {
+        card.style.flex = `0 0 ${cardWidth}px`;
+        card.classList.toggle('t-active', i === tActive);
+        card.classList.toggle('t-side', i !== tActive);
+      });
+      // Slide so that tActive is in the center: first visible = tActive - 1
+      const offset = (tActive - 1) * (cardWidth + gap);
+      tContainer.style.transform = `translateX(${offset}px)`;
+    }
 
     tDots.forEach((dot, i) => dot.classList.toggle('active', i === tActive));
   }
