@@ -1930,11 +1930,11 @@ body.lang-en .qa-arrow {
   .hero {
     min-height: calc(100vh - 15px);
     min-height: calc(100dvh - 15px);
-    padding-top: 64px;
+    padding-top: 50px;
   }
 
   .hero-content {
-    padding: 6px 20px;
+    padding: 0 20px;
   }
 
   .mobile-br {
