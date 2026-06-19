@@ -632,7 +632,7 @@ body.lang-en .a11y-panel {
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.15em;
-  margin-bottom: 4px;
+  margin-bottom: 18px;
 }
 
 .hero-title {
@@ -1934,7 +1934,7 @@ body.lang-en .qa-arrow {
   }
 
   .hero-content {
-    padding: 30px 20px;
+    padding: 20px 20px;
   }
 
   .mobile-br {
@@ -1944,7 +1944,7 @@ body.lang-en .qa-arrow {
   .hero-logo {
     display: block;
     height: 75px;
-    margin: 0 auto 16px;
+    margin: 0 auto 8px;
   }
 
   .hero-title {
