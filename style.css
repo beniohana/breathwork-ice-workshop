@@ -1943,7 +1943,9 @@ body.lang-en .qa-arrow {
   }
 
   .hero-logo {
-    display: none;
+    display: block;
+    height: 55px;
+    margin: 0 auto 16px;
   }
 
   .hero-title {
