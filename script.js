@@ -260,11 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
   tStage.addEventListener('touchend', (e) => {
     const diff = tTouchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 50) {
-      // Swipe left (diff>0) → dot moves right; swipe right (diff<0) → dot moves left
+      // Natural swipe: finger goes right → content moves right, finger goes left → content moves left
       if (diff > 0) {
-        setTActive(tActive - 1);
-      } else {
         setTActive(tActive + 1);
+      } else {
+        setTActive(tActive - 1);
       }
     }
     tSwipeLocked = false;
@@ -631,10 +631,11 @@ document.addEventListener('DOMContentLoaded', () => {
   stackStage.addEventListener('touchend', (e) => {
     const diff = stackTouchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 50) {
+      // Natural swipe: finger goes right → content moves right, finger goes left → content moves left
       if (diff > 0) {
-        setStackActive(stackActive - 1);
-      } else {
         setStackActive(stackActive + 1);
+      } else {
+        setStackActive(stackActive - 1);
       }
     }
     stackSwipeLocked = false;

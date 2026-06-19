@@ -1902,6 +1902,10 @@ body.lang-en .qa-arrow {
     height: 64px;
   }
 
+  .logo-icon {
+    height: 28px;
+  }
+
   .main-nav {
     display: none !important;
   }
@@ -1937,10 +1941,11 @@ body.lang-en .qa-arrow {
     font-size: clamp(2.8rem, 12vw, 4.5rem);
     line-height: 1.1;
     text-align: center;
+    white-space: nowrap;
   }
 
   .mobile-br {
-    display: inline;
+    display: none;
   }
 
   .mobile-hide {
@@ -2064,13 +2069,13 @@ body.lang-en .qa-arrow {
 
   .benefit-item {
     padding: 24px 16px;
-    text-align: right;
+    text-align: center;
   }
 
   .benefit-icon {
     width: 44px;
     height: 44px;
-    margin: 0 0 14px;
+    margin: 0 auto 14px;
   }
 
   .benefit-item h3 {
@@ -2280,16 +2285,16 @@ body.lang-en .qa-arrow {
 
   .benefit-item {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    text-align: start;
-    gap: 16px;
+    text-align: center;
+    gap: 8px;
     padding: 18px 16px;
   }
 
   .benefit-icon {
     flex-shrink: 0;
-    margin: 0;
+    margin: 0 auto 4px;
     width: 40px;
     height: 40px;
   }
