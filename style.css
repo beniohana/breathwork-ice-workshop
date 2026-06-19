@@ -884,7 +884,7 @@ body.lang-en .a11y-panel {
   will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  animation: marqueeScroll 60s linear infinite;
+  animation: marqueeScroll 45s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2018,7 +2018,7 @@ body.lang-en .qa-arrow {
   }
 
   .marquee-track {
-    animation-duration: 18s;
+    animation-duration: 14s;
   }
 
   .marquee-logo {
