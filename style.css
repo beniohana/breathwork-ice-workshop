@@ -632,7 +632,7 @@ body.lang-en .a11y-panel {
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.15em;
-  margin-bottom: 18px;
+  margin-bottom: 28px;
 }
 
 .hero-title {
@@ -1930,7 +1930,7 @@ body.lang-en .qa-arrow {
   .hero {
     min-height: calc(100vh - 15px);
     min-height: calc(100dvh - 15px);
-    padding-top: 50px;
+    padding-top: 40px;
   }
 
   .hero-content {
